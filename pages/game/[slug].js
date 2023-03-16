@@ -1,4 +1,4 @@
-import Image from "next/future/image";
+import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
 import { useEffect } from "react";
@@ -44,16 +44,18 @@ export default function Game({ game, relatedGames }) {
                 <div className="game-rating">
                   <span>{game.rating}</span>
                 </div>
-                <Link href={`/category/` + game.category.slug}>
-                  <a className="game-category">{game.category.name}</a>
+                <Link href={`/category/` + game.category.slug} className="game-category">
+                  {game.category.name}
                 </Link>
               </div>
             </div>
           </div>
-          <Link href={getGameUrl(game.title)}>
-            <a className="play-btn" title={`Play ` + game.title + ` Now`}>
-              Play Now
-            </a>
+          <Link
+            href={getGameUrl(game.title)}
+            className="play-btn"
+            title={`Play ` + game.title + ` Now`}
+          >
+            Play Now
           </Link>
           <div className="description">
             <h3 className="font-bold mb-2">Description</h3>

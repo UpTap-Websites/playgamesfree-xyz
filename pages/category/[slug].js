@@ -1,4 +1,4 @@
-import Image from "next/future/image";
+import Image from "next/image";
 import Head from "next/head";
 import Layout from "../../components/Layout";
 
@@ -14,10 +14,7 @@ export default function Category({ games, category }) {
     <Layout>
       <Head>
         <title>{category.name + ` Games | ` + SITE_META.NAME}</title>
-        <meta
-          name="description"
-          content="Play the newest online casual games for free!"
-        />
+        <meta name="description" content="Play the newest online casual games for free!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -31,23 +28,21 @@ export default function Category({ games, category }) {
             {games.map((i, index) => (
               <li key={i.slug} className="list-item">
                 <Link href={`/game/` + i.slug}>
-                  <a>
-                    <Image
-                      className="image"
-                      src={getImageUrl(i.title)}
-                      alt={i.title}
-                      width={100}
-                      height={100}
-                      loading={index <= 9 ? `eager` : `lazy`}
-                    />
-                    <div className="title">{i.title}</div>
-                  </a>
+                  <Image
+                    className="image"
+                    src={getImageUrl(i.title)}
+                    alt={i.title}
+                    width={100}
+                    height={100}
+                    loading={index <= 9 ? `eager` : `lazy`}
+                  />
+                  <div className="title">{i.title}</div>
                 </Link>
               </li>
             ))}
           </ul>
-          {/* <Link href={`/category`}>
-            <a className="link-more">More</a>
+          {/* <Link href={`/category`} className="link-more">
+            More
           </Link> */}
         </section>
       </div>
@@ -58,9 +53,7 @@ export default function Category({ games, category }) {
 export const getStaticProps = async (ctx) => {
   const basicData = data?.data?.basicData;
 
-  let games = basicData
-    .slice()
-    .filter((i) => i.category.slug === ctx.params.slug);
+  let games = basicData.slice().filter((i) => i.category.slug === ctx.params.slug);
   games.forEach((element) => {
     delete element.id;
     delete element.rating;

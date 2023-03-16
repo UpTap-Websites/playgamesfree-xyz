@@ -1,4 +1,4 @@
-import Image from "next/future/image";
+import Image from "next/image";
 import Link from "next/link";
 import { SITE_META } from "../lib/constants";
 import Logo from "../public/brand/playgamesfree-logo.png";

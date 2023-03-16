@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Image from "next/future/image";
+import Image from "next/image";
 import Layout from "../components/Layout";
 
 import { SITE_META } from "../lib/constants";
@@ -13,10 +13,7 @@ export default function AllGames({ games }) {
     <Layout>
       <Head>
         <title>{SITE_META.NAME + ` | ` + SITE_META.TAGLINE}</title>
-        <meta
-          name="description"
-          content="Play the newest online casual games for free!"
-        />
+        <meta name="description" content="Play the newest online casual games for free!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -30,17 +27,15 @@ export default function AllGames({ games }) {
             {games.map((i, index) => (
               <li key={i.slug} className="list-item">
                 <Link href={`/game/` + i.slug}>
-                  <a>
-                    <Image
-                      className="image"
-                      src={getImageUrl(i.title)}
-                      alt={i.title}
-                      width={100}
-                      height={100}
-                      loading={index <= 9 ? `eager` : `lazy`}
-                    />
-                    <div className="title">{i.title}</div>
-                  </a>
+                  <Image
+                    className="image"
+                    src={getImageUrl(i.title)}
+                    alt={i.title}
+                    width={100}
+                    height={100}
+                    loading={index <= 9 ? `eager` : `lazy`}
+                  />
+                  <div className="title">{i.title}</div>
                 </Link>
               </li>
             ))}

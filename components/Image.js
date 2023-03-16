@@ -1,4 +1,4 @@
-import NextImage from "next/future/image";
+import NextImage from "next/image";
 
 export default function Image(params) {
   return <NextImage />;

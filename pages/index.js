@@ -1,4 +1,4 @@
-import Image from "next/future/image";
+import Image from "next/image";
 import Head from "next/head";
 import Layout from "../components/Layout";
 
@@ -15,10 +15,7 @@ export default function Home({ games }) {
     <Layout>
       <Head>
         <title>{SITE_META.NAME + ` | ` + SITE_META.TAGLINE}</title>
-        <meta
-          name="description"
-          content="Play the newest online casual games for free!"
-        />
+        <meta name="description" content="Play the newest online casual games for free!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -33,24 +30,22 @@ export default function Home({ games }) {
               {i.data.map((i) => (
                 <li className="list-item" key={i.slug}>
                   <Link href={`/game/` + i.slug}>
-                    <a>
-                      <Image
-                        className="image"
-                        src={getImageUrl(i.title)}
-                        alt={i.title}
-                        width={100}
-                        height={100}
-                        loading={index <= 1 ? `eager` : `lazy`}
-                      />
-                      <div className="title">{i.title}</div>
-                    </a>
+                    <Image
+                      className="image"
+                      src={getImageUrl(i.title)}
+                      alt={i.title}
+                      width={100}
+                      height={100}
+                      loading={index <= 1 ? `eager` : `lazy`}
+                    />
+                    <div className="title">{i.title}</div>
                   </Link>
                 </li>
               ))}
             </ul>
             {i.total > 6 ? (
-              <Link href={`/category/` + i.category.slug}>
-                <a className="link-more">More</a>
+              <Link href={`/category/` + i.category.slug} className="link-more">
+                More
               </Link>
             ) : null}
           </section>
