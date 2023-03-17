@@ -36,7 +36,7 @@ body {
   @apply grid grid-cols-3 gap-2 xl:flex;
 }
 .menu-item {
-  @apply border-2 border-emerald-700 xl:border-transparent xl:bg-transparent py-1.5 xl:py-2 px-2 rounded-xl bg-emerald-700 xl:hover:bg-emerald-700 xl:transform xl:duration-500 xl:ease-in-out text-center text-sm;
+  @apply border-2 border-emerald-700 xl:border-transparent xl:bg-transparent xl:mx-4 py-1.5 xl:py-2 px-2 rounded-xl bg-emerald-700 xl:hover:bg-emerald-700 xl:transform xl:duration-500 xl:ease-in-out text-center text-sm;
 }
 .menu-item.current {
   @apply border-lime-600 bg-emerald-700 text-yellow-200;
@@ -89,7 +89,7 @@ body {
 
 /* List */
 .list-item .image {
-  @apply rounded-xl shadow-lg xl:hover:shadow-black/20 xl:hover:scale-110 xl:transform xl:duration-300 shadow-black/10 w-full border-4 border-amber-300;
+  @apply rounded-3xl shadow-lg xl:hover:shadow-black/20 xl:hover:scale-110 xl:transform xl:duration-300 shadow-black/10 w-full border-4 border-amber-300;
 }
 .list-item .title {
   @apply mt-2 text-xs text-center text-emerald-900;

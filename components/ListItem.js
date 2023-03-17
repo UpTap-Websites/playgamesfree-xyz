@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getImageUrl } from "../lib/api";
+import getGameIcon from "@/utils/getGameIcon";
 
 export default function ListItem({ item }) {
   return (
@@ -9,7 +9,7 @@ export default function ListItem({ item }) {
         <a>
           <Image
             className="image"
-            src={getImageUrl(item.title)}
+            src={getGameIcon(item.id)}
             alt={item.title}
             width={100}
             height={100}

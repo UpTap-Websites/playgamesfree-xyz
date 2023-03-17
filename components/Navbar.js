@@ -81,37 +81,22 @@ export default function Navbar({ navItems }) {
         <div className={(isOpen ? "" : "hidden ") + "menu-panel"}>
           <ul className="menu-list">
             <li className="menu-item">
-              <Link href={`/all`}>All</Link>
-            </li>
-            <li className="menu-item">
               <Link href={`/category/adventure`}>Adventure</Link>
             </li>
             <li className="menu-item">
               <Link href={`/category/` + `arcade`}>Arcade</Link>
             </li>
             <li className="menu-item">
-              <Link href={`/category/casual`}>Casual</Link>
+              <Link href={`/category/board`}>Board</Link>
             </li>
             <li className="menu-item">
-              <Link href={`/category/girl`}>Girl</Link>
+              <Link href={`/category/junior`}>Junior</Link>
             </li>
             <li className="menu-item">
-              <Link href={`/category/io`}>IO</Link>
+              <Link href={`/category/puzzles`}>Puzzles</Link>
             </li>
             <li className="menu-item">
-              <Link href={`/category/match-3`}>Match 3</Link>
-            </li>
-            <li className="menu-item">
-              <Link href={`/category/puzzle`}>Puzzle</Link>
-            </li>
-            <li className="menu-item">
-              <Link href={`/category/racing`}>Racing</Link>
-            </li>
-            <li className="menu-item">
-              <Link href={`/category/shooting`}>Shooting</Link>
-            </li>
-            <li className="menu-item">
-              <Link href={`/category/simulation`}>Simulation</Link>
+              <Link href={`/category/classics`}>Classics</Link>
             </li>
             <li className="menu-item">
               <Link href={`/category/sports`}>Sports</Link>

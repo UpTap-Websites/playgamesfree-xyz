@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Script from "next/script";
 import * as gtag from "../lib/gtag";
+import Head from "next/head";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -58,7 +59,9 @@ function MyApp({ Component, pageProps }) {
           `,
         }}
       />
-
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Component {...pageProps} />
     </>
   );

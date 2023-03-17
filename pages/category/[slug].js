@@ -6,23 +6,23 @@ import Link from "next/link";
 import { SITE_META } from "../../lib/constants";
 
 import data from "../../data/games";
-import { getImageUrl } from "../../lib/api";
+import { getCategories, getGamesByCategory, getImageUrl } from "../../lib/api/gamepix";
+import getGameIcon from "@/utils/getGameIcon";
 
-export default function Category({ games, category }) {
-  console.log(`games: `, games);
+export default function Category({ games, category, total }) {
+  // console.log(`games: `, games);
   return (
     <Layout>
       <Head>
-        <title>{category.name + ` Games | ` + SITE_META.NAME}</title>
+        <title>{category + ` Games | ` + SITE_META.NAME}</title>
         <meta name="description" content="Play the newest online casual games for free!" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <div className={`category`}>
         <section>
           <div className={`section-head`}>
-            <h2 className={`h2`}>{category.name + ` Games`}</h2>
-            <span className="total">{games.length}</span>
+            <h2 className={`h2`}>{category + ` Games`}</h2>
+            <span className="total">{total}</span>
           </div>
           <ul className={`section-body`}>
             {games.map((i, index) => (
@@ -30,7 +30,7 @@ export default function Category({ games, category }) {
                 <Link href={`/game/` + i.slug}>
                   <Image
                     className="image"
-                    src={getImageUrl(i.title)}
+                    src={getGameIcon(i.id)}
                     alt={i.title}
                     width={100}
                     height={100}
@@ -51,28 +51,22 @@ export default function Category({ games, category }) {
 }
 
 export const getStaticProps = async (ctx) => {
-  const basicData = data?.data?.basicData;
-
-  let games = basicData.slice().filter((i) => i.category.slug === ctx.params.slug);
-  games.forEach((element) => {
-    delete element.id;
-    delete element.rating;
-    delete element.thumbnailUrl;
-  });
-
+  // console.log(`params slug: `, ctx.params.slug);
+  const data = await getGamesByCategory({ category: `${ctx.params.slug}`, per_page: 48 });
   return {
     props: {
-      games,
-      category: games[0].category,
+      games: data.data,
+      total: data.total,
+      category: `${ctx.params.slug}`.replace(/^\S/, (s) => s.toUpperCase()),
     },
   };
 };
 
 export const getStaticPaths = async () => {
-  const categories = data?.data?.categories;
+  const categories = await getCategories();
   const paths = categories.map((i) => ({
     params: {
-      slug: i.slug,
+      slug: i.name.toLowerCase(),
     },
   }));
 

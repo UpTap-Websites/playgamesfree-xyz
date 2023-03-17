@@ -3,8 +3,8 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: [`cdn.iwantalipstick.com`],
-    formats: [`image/avif`, `image/webp`],
+    // domains: [`cdn.iwantalipstick.com`],
+    // formats: [`image/avif`, `image/webp`],
     unoptimized: true,
   },
   compiler: {
