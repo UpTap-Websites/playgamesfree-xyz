@@ -1,13 +1,12 @@
-import Image from "next/image";
 import Head from "next/head";
-import Layout from "../../components/Layout";
+import Image from "next/image";
+import Layout from "@/components/Layout";
 
 import Link from "next/link";
-import { SITE_META } from "../../lib/constants";
+import { SITE_META } from "@/lib/constants";
 
-import data from "../../data/games";
-import { getCategories, getGamesByCategorySlug, getImageUrl } from "../../lib/api";
-import getGameIcon from "../../utils/getGameIcon";
+import { getCategories, getGamesByCategorySlug } from "@/lib/api";
+import getGameIcon from "@/utils/getGameIcon";
 
 export default function Category({ games, category, total }) {
   console.log(`games: `, games);

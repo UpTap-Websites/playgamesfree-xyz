@@ -1,12 +1,11 @@
-import Image from "next/image";
-import Head from "next/head";
-import Link from "next/link";
-import { useEffect } from "react";
 import Layout from "@/components/Layout";
 import List from "@/components/List";
+import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect } from "react";
 // import ListItem from "../../components/ListItem";
-import data from "../../data/games.json";
-import { fetchAPI, getCategories, getImageUrl, getGameBySlug } from "@/lib/api";
+import { fetchAPI, getCategories, getGameBySlug } from "@/lib/api";
 import { SITE_META } from "@/lib/constants";
 import getGameIcon from "@/utils/getGameIcon";
 import getGameUrl from "@/utils/getGameUrl";

@@ -1,14 +1,11 @@
-import Image from "next/image";
 import Head from "next/head";
 import Layout from "../components/Layout";
 
 import Link from "next/link";
 
+import ListItem from "@/components/ListItem";
+import { getDataForHome } from "../lib/api";
 import { SITE_META } from "../lib/constants";
-import { getDataForHome, getImageUrl } from "../lib/api";
-import data from "../data/games";
-import getGameIcon from "../utils/getGameIcon";
-import getGameBanner from "@/utils/getGameBanner";
 
 export default function Home({ data }) {
   console.log(`data: `, data);
@@ -29,19 +26,20 @@ export default function Home({ data }) {
             </div>
             <ul className={`section-body`}>
               {i.data.games.map((i) => (
-                <li className="list-item" key={i.slug}>
-                  <Link href={`/game/` + i.slug}>
-                    <Image
-                      className="image"
-                      src={getGameBanner(i.gid)}
-                      alt={i.title}
-                      width={100}
-                      height={100}
-                      loading={index <= 1 ? `eager` : `lazy`}
-                    />
-                    <div className="title">{i.title}</div>
-                  </Link>
-                </li>
+                <ListItem item={i} type={`banner`} key={i.slug} />
+                // <li className="list-item" key={i.slug}>
+                //   <Link href={`/game/` + i.slug}>
+                //     <Image
+                //       className="image"
+                //       src={getGameBanner(i.gid)}
+                //       alt={i.title}
+                //       width={100}
+                //       height={100}
+                //       loading={index <= 1 ? `eager` : `lazy`}
+                //     />
+                //     <div className="title">{i.title}</div>
+                //   </Link>
+                // </li>
               ))}
             </ul>
             {i.data.total > 6 ? (

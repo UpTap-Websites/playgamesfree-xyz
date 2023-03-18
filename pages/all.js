@@ -1,12 +1,12 @@
 import Head from "next/head";
-import Image from "next/image";
+
 import Layout from "../components/Layout";
 
 import { SITE_META } from "../lib/constants";
-import Link from "next/link";
-import data from "../data/games";
-import { getDataForAll, getImageUrl } from "../lib/api";
-import getGameIcon from "@/utils/getGameIcon";
+
+import { getDataForAll } from "../lib/api";
+
+import ListItem from "@/components/ListItem";
 
 export default function AllGames({ games }) {
   console.log(`all games: `, games);
@@ -25,19 +25,20 @@ export default function AllGames({ games }) {
           </div>
           <ul className={`section-body`}>
             {games.map((i, index) => (
-              <li key={i.slug} className="list-item">
-                <Link href={`/game/` + i.slug}>
-                  <Image
-                    className="image"
-                    src={getGameIcon(i.gid)}
-                    alt={i.title}
-                    width={100}
-                    height={100}
-                    loading={index <= 9 ? `eager` : `lazy`}
-                  />
-                  <div className="title">{i.title}</div>
-                </Link>
-              </li>
+              <ListItem item={i} key={i.slug} />
+              // <li key={i.slug} className="list-item">
+              //   <Link href={`/game/` + i.slug}>
+              //     <Image
+              //       className="image"
+              //       src={getGameIcon(i.gid)}
+              //       alt={i.title}
+              //       width={100}
+              //       height={100}
+              //       loading={index <= 9 ? `eager` : `lazy`}
+              //     />
+              //     <div className="title">{i.title}</div>
+              //   </Link>
+              // </li>
             ))}
           </ul>
           {/* <Link href={`/category`}>
