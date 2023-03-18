@@ -5,12 +5,12 @@
 /* Basic */
 html,
 body {
-  @apply bg-slate-600 font-['Nunito'];
+  @apply bg-emerald-800 font-['Nunito'];
 }
 
 /* Layout */
 .wrapper {
-  @apply flex flex-col min-h-screen bg-white;
+  @apply flex flex-col min-h-screen bg-amber-100;
 }
 
 /* Navbar */
@@ -18,45 +18,47 @@ body {
   @apply m-4 relative;
 }
 .home-button {
-  @apply text-slate-700 w-6 h-6 xl:-top-2 xl:w-20 xl:absolute xl:justify-center xl:h-20 xl:rounded-full flex items-center xl:bg-gradient-to-br xl:from-slate-300 xl:bg-slate-400/40 xl:backdrop-blur-sm xl:hover:backdrop-blur-none xl:transform xl:duration-500;
+  @apply text-emerald-700 w-6 h-6 xl:-top-2 xl:w-20 xl:absolute xl:justify-center xl:h-20 xl:rounded-full flex items-center xl:bg-gradient-to-br xl:from-yellow-300 xl:bg-yellow-400/40 xl:backdrop-blur-sm xl:hover:backdrop-blur-none xl:transform xl:duration-500;
 }
 /* .home-button {
-  @apply absolute left-0 -top-9 text-slate-700 xl:-top-2 xl:w-20 xl:h-20 xl:rounded-full flex justify-center items-center xl:bg-gradient-to-br xl:from-slate-300 xl:bg-slate-400/40 xl:backdrop-blur-sm xl:hover:backdrop-blur-none xl:transform xl:duration-500;
+  @apply absolute left-0 -top-9 text-yellow-700 xl:-top-2 xl:w-20 xl:h-20 xl:rounded-full flex justify-center items-center xl:bg-gradient-to-br xl:from-yellow-300 xl:bg-yellow-400/40 xl:backdrop-blur-sm xl:hover:backdrop-blur-none xl:transform xl:duration-500;
 } */
 /* .menu-button {
-  @apply absolute right-0 -top-9 text-slate-700;
+  @apply absolute right-0 -top-9 text-yellow-700;
 } */
 .menu-button {
-  @apply absolute grid justify-center content-center w-6 h-6 right-0 top-0 text-slate-700 xl:hidden;
+  @apply absolute grid justify-center content-center w-6 h-6 right-0 top-0 text-emerald-700 xl:hidden;
 }
 .menu-panel {
-  @apply mt-4 xl:block xl:mt-0 xl:ml-3 p-3 xl:pl-20 bg-slate-800 text-slate-400 rounded-3xl shadow-lg xl:shadow-slate-300;
+  @apply mt-4 xl:block xl:mt-0 xl:ml-3 p-3 xl:pl-20 bg-emerald-800 text-yellow-400 rounded-3xl shadow-lg xl:shadow-yellow-900/20;
 }
 .menu-list {
   @apply grid grid-cols-3 gap-2 xl:flex;
 }
 .menu-item {
-  @apply border-2 border-slate-600 xl:border-transparent xl:bg-transparent py-1.5 xl:py-2 px-2 rounded-xl bg-slate-700 xl:hover:bg-slate-700 xl:transform xl:duration-500 xl:ease-in-out text-center text-sm;
+  @apply border-2 border-emerald-700 xl:border-transparent xl:bg-transparent py-1.5 xl:py-2 px-2 rounded-xl bg-emerald-700 xl:hover:bg-emerald-700 xl:transform xl:duration-500 xl:ease-in-out text-center text-sm;
 }
 .menu-item.current {
-  @apply border-slate-400 bg-slate-600 text-white;
+  @apply border-lime-600 bg-emerald-700 text-yellow-200;
 }
+
 /* Footer */
 .site-footer {
-  @apply bg-slate-600 text-slate-400 text-center;
+  @apply bg-emerald-800 text-emerald-600 text-center;
 }
 .footer-nav {
-  @apply bg-slate-700 text-slate-400 p-3;
+  @apply bg-emerald-700 text-lime-500 p-3;
 }
 .footer-nav ul {
   @apply flex space-x-4 justify-center text-xs;
 }
 .footer-logo {
-  @apply h-10 mt-7 mx-auto;
+  @apply h-10 mt-7 mb-2 mx-auto w-auto opacity-80;
 }
 .site-footer p {
   @apply pb-8 text-xs;
 }
+
 /* Home */
 .home {
   @apply xl:mx-auto xl:grid xl:grid-cols-4;
@@ -67,13 +69,13 @@ body {
   @apply mb-6;
 }
 .section-head {
-  @apply mx-8 mb-4 xl:mb-5 text-slate-700 flex space-x-2 items-center;
+  @apply mx-8 mb-4 xl:mb-5 text-emerald-700 flex space-x-2 items-center;
 }
 .section-head .h2 {
   @apply text-lg font-bold;
 }
 .total {
-  @apply bg-slate-200 px-2 py-1 rounded-md text-xs;
+  @apply bg-yellow-200 px-2 py-1 rounded-md text-xs;
 }
 .section-body {
   @apply mx-8 grid grid-cols-3 gap-4 xl:grid-cols-12;
@@ -84,24 +86,64 @@ body {
 .home .section-body {
   @apply grid-cols-3;
 }
+
 /* List */
 .list-item .image {
-  @apply rounded-xl shadow-lg xl:hover:shadow-slate-400 xl:hover:scale-110 xl:transform xl:duration-300 shadow-slate-300 w-full;
+  @apply rounded-3xl shadow-lg xl:hover:shadow-black/20 xl:hover:scale-110 xl:transform xl:duration-300 shadow-black/10 w-full border-4 border-amber-300;
 }
 .list-item .title {
-  @apply mt-2 text-xs text-center;
+  @apply mt-2 text-xs text-center text-emerald-900;
 }
 .link-more {
-  @apply block mx-8 uppercase text-sm text-center border mt-4 py-1 rounded-sm shadow-sm shadow-slate-100;
+  @apply block mx-8 uppercase text-sm text-yellow-900 text-center border bg-amber-300 border-amber-400 mt-4 py-1 rounded-sm shadow-sm shadow-amber-200;
 }
 /* Category */
 .category .section-head,
 .all .section-head {
   @apply justify-center xl:justify-start;
 }
+/* Detail */
 .detail .section-head {
   @apply xl:mx-0;
 }
 .detail .h2 {
   @apply text-xl;
+}
+.game-meta {
+  @apply flex mb-6 xl:space-x-0 space-x-4 xl:justify-between xl:flex-row-reverse;
+}
+.game-meta .title {
+  @apply text-2xl leading-6 xl:text-5xl my-2 xl:mb-6 font-black text-emerald-700;
+}
+.game-meta .image {
+  @apply rounded-[2.5rem] border-8 border-amber-300 w-40 h-40 xl:w-[200px] xl:h-[200px] xl:shadow-xl xl:shadow-amber-200;
+}
+.detail .description {
+  @apply p-4 my-4 xl:my-6 rounded-lg bg-amber-200 text-emerald-800 text-sm xl:text-base;
+}
+.game-info {
+  @apply xl:flex xl:flex-row xl:items-center xl:space-x-2;
+}
+.game-rating {
+  @apply text-center my-2 grid content-center text-xl font-bold text-white w-10 h-10 bg-orange-500 rounded-full;
+}
+.game-category {
+  @apply inline-block py-1 px-2 text-xs uppercase bg-lime-600 text-lime-200 rounded-md;
+}
+.play-btn {
+  @apply block text-center bg-sky-500 xl:w-[300px] py-4 px-8 text-white rounded-full font-bold text-xl shadow-lg shadow-sky-600/20;
+}
+.detail .list {
+  @apply mx-8 xl:mx-0 mb-4 grid xl:grid-cols-6 grid-cols-3 gap-4 xl:gap-6;
+}
+
+/* Page */
+.page p {
+  @apply mb-4 text-sm;
+}
+.page h3 {
+  @apply text-lg font-bold my-3;
+}
+.page ul {
+  @apply list-disc list-outside ml-4 my-2;
 }

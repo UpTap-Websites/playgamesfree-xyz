@@ -1,22 +1,20 @@
 import Head from "next/head";
-import Image from "next/future/image";
+import Image from "next/image";
 import Layout from "../components/Layout";
 
 import { SITE_META } from "../lib/constants";
 import Link from "next/link";
 import data from "../data/games";
+import { getDataForAll, getImageUrl } from "../lib/api";
+import getGameIcon from "@/utils/getGameIcon";
 
 export default function AllGames({ games }) {
-  // console.log(`all games: `, games);
+  console.log(`all games: `, games);
   return (
     <Layout>
       <Head>
         <title>{SITE_META.NAME + ` | ` + SITE_META.TAGLINE}</title>
-        <meta
-          name="description"
-          content="Play the newest online casual games for free!"
-        />
-        <link rel="icon" href="/favicon.ico" />
+        <meta name="description" content="Play the newest online casual games for free!" />
       </Head>
 
       <div className={`all xl:mx-auto`}>
@@ -26,26 +24,25 @@ export default function AllGames({ games }) {
             <span className="total">{games.length}</span>
           </div>
           <ul className={`section-body`}>
-            {games.map((i) => (
+            {games.map((i, index) => (
               <li key={i.slug} className="list-item">
                 <Link href={`/game/` + i.slug}>
-                  <a>
-                    <Image
-                      className="image"
-                      src={i.thumbnailUrl}
-                      alt={i.title}
-                      width={100}
-                      height={100}
-                    />
-                    <div className="title">{i.title}</div>
-                  </a>
+                  <Image
+                    className="image"
+                    src={getGameIcon(i.gid)}
+                    alt={i.title}
+                    width={100}
+                    height={100}
+                    loading={index <= 9 ? `eager` : `lazy`}
+                  />
+                  <div className="title">{i.title}</div>
                 </Link>
               </li>
             ))}
           </ul>
-          <Link href={`/category`}>
+          {/* <Link href={`/category`}>
             <a className="link-more">More</a>
-          </Link>
+          </Link> */}
         </section>
       </div>
     </Layout>
@@ -53,11 +50,10 @@ export default function AllGames({ games }) {
 }
 
 export const getStaticProps = async (ctx) => {
-  const games = data?.data?.basicData;
-
+  const data = await getDataForAll();
   return {
     props: {
-      games,
+      games: data,
     },
   };
 };

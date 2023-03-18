@@ -4,14 +4,19 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
+    "postbuild": "next-sitemap --config next-sitemap.config.js",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "12.3.0",
+    "@next/env": "^13.2.4",
+    "next": "13.2.4",
+    "next-sitemap": "^4.0.5",
+    "nprogress": "^0.2.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "sharp": "^0.31.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.11",

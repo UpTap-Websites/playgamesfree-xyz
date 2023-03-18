@@ -1,21 +1,27 @@
-import Image from "next/future/image";
+import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
 import { useEffect } from "react";
-import Layout from "../../components/Layout";
-import List from "../../components/List";
+import Layout from "@/components/Layout";
+import List from "@/components/List";
 // import ListItem from "../../components/ListItem";
 import data from "../../data/games.json";
-import { SITE_META } from "../../lib/constants";
+import { fetchAPI, getCategories, getImageUrl, getGameBySlug } from "@/lib/api";
+import { SITE_META } from "@/lib/constants";
+import getGameIcon from "@/utils/getGameIcon";
+import getGameUrl from "@/utils/getGameUrl";
 
 export default function Game({ game, relatedGames }) {
+  console.log(`game: `, game);
+  console.log(`relatedGames: `, relatedGames);
   useEffect(() => {
+    // 推送Play按钮点击数据
     function handleClick(e) {
-      e.preventDefault();
+      process.env.NODE_ENV === `development` ? e.preventDefault() : null;
       console.log(`Event: `, e);
       gtag && gtag("event", "click_CTA", { game: game.title });
     }
-    const CTA = document.querySelector(".play_btn");
+    const CTA = document.querySelector(".play-btn");
     CTA.addEventListener("click", handleClick);
   }, [game.title]);
   return (
@@ -25,51 +31,44 @@ export default function Game({ game, relatedGames }) {
       </Head>
       <div className="detail max-w-5xl mx-auto">
         <section className="mx-8 xl:mx-0">
-          <div className="flex mb-6 xl:space-x-0 space-x-4 xl:justify-between xl:flex-row-reverse">
+          <div className="game-meta">
             <Image
-              className="rounded-2xl w-40 h-40 xl:w-[200px] xl:h-[200px] shadow-xl shadow-slate-300 xl:shadow-xl xl:shadow-slate-300"
-              src={game.thumbnailUrl}
+              className="image"
+              src={getGameIcon(game.gid)}
               width={200}
               height={200}
               alt={game.title}
+              loading={`eager`}
             />
             <div>
-              <h1 className="text-2xl leading-6 xl:text-5xl my-2 xl:mb-6 font-black text-slate-700">
-                {game.title}
-              </h1>
-              <div className="xl:flex xl:flex-row xl:items-center xl:space-x-2">
-                <div className="text-center my-2 grid content-center text-xl font-bold text-white w-10 h-10 bg-orange-500 rounded-full">
-                  <span>{game.rating}</span>
+              <h1 className="title">{game.title}</h1>
+              <div className="game-info">
+                <div className="game-rating">
+                  <span>{Math.round(game.rating * 10)}</span>
                 </div>
-                <Link href={`/category/` + game.category.slug}>
-                  <a className="inline-block py-1 px-2 text-xs uppercase bg-slate-600 text-slate-200 rounded-md">
-                    {game.category.name}
-                  </a>
+                <Link href={`/category/` + game.category.slug} className="game-category">
+                  {game.category.name}
                 </Link>
               </div>
             </div>
           </div>
-          <Link href={game.url}>
-            <a
-              className="play_btn block text-center bg-orange-500 xl:w-[300px] py-4 px-8 text-white rounded-full font-bold text-xl shadow-lg shadow-orange-100"
-              title={`Play ` + game.title + ` Now`}
-            >
-              Play Now
-            </a>
+          <Link
+            href={getGameUrl(game.slug)}
+            className="play-btn"
+            title={`Play ` + game.title + ` Now`}
+          >
+            Play Now
           </Link>
-          <div className="p-4 my-4 xl:my-6 rounded-lg bg-slate-100 text-slate-700">
+          <div className="description">
             <h3 className="font-bold mb-2">Description</h3>
-            {game.description}
+            <div dangerouslySetInnerHTML={{ __html: game.description }} />
           </div>
         </section>
         <section>
           <div className="section-head">
             <h2 className="h2">You may also like</h2>
           </div>
-          <List
-            items={relatedGames}
-            className={`mx-8 xl:mx-0 mb-4 grid xl:grid-cols-6 grid-cols-3 gap-4 xl:gap-6`}
-          />
+          <List items={relatedGames} />
         </section>
       </div>
     </Layout>
@@ -77,22 +76,44 @@ export default function Game({ game, relatedGames }) {
 }
 
 export const getStaticProps = async (ctx) => {
-  const fullData = data?.data?.fullData;
-  const game = fullData.find((i) => i.slug === ctx.params.slug);
-  const relatedGames = fullData
-    .filter((i) => i.slug !== ctx.params.slug)
-    .slice(0, 12);
+  const data = await getGameBySlug(ctx.params.slug, 12);
+
   return {
     props: {
-      game,
-      relatedGames,
+      game: data?.games[0],
+      relatedGames: data?.related,
     },
   };
 };
 
 export const getStaticPaths = async () => {
-  const basicData = data?.data?.basicData;
-  const paths = basicData.map((i) => ({ params: { slug: i.slug } }));
+  const PER_PAGE = 48;
+  // 按分类取
+  const categories = await getCategories();
+  // console.log(`detai ..categories`, categories);
+  let data = [];
+  for (const item of categories) {
+    // console.log(`slug`, item.slug);
+    const tmp = await fetchAPI(
+      `
+        query ($category: String, $limit: Int ){
+          games (filter: { category: { slug: { _eq: $category } } }, limit: $limit) {
+            slug
+          }
+        }
+      `,
+      {
+        variables: {
+          limit: PER_PAGE,
+          category: item.slug,
+        },
+      }
+    );
+
+    data = data.concat(tmp.games.map((i) => i.slug));
+  }
+  // console.log(`detail data`, data);
+  const paths = data.map((i) => ({ params: { slug: i } }));
   return {
     paths,
     fallback: false,

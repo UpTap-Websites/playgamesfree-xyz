@@ -1,7 +1,7 @@
-import Image from "next/future/image";
+import Image from "next/image";
 import Link from "next/link";
 import { SITE_META } from "../lib/constants";
-import Logo from "../public/brand/uptapgame-logo.svg";
+import Logo from "../public/brand/playgamesfree-logo.png";
 // import { useRouter } from "next/router";
 export default function Footer(params) {
   return (
@@ -23,8 +23,8 @@ export default function Footer(params) {
       <Image
         className="footer-logo w-auto"
         src={Logo}
-        width={300}
-        height={53}
+        width={64}
+        height={64}
         // src={useRouter().basePath + `/brand/uptapgame-logo.svg`}
         alt={SITE_META.NAME}
       />

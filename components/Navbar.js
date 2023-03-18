@@ -25,9 +25,7 @@ export default function Navbar({ navItems }) {
     currentItem && currentItem.classList.remove("current"); // 如果存在.current则先移除
 
     for (let i of menuItems) {
-      i.getAttribute("href") === currentPath
-        ? (i.parentNode.classList += " current")
-        : null;
+      i.getAttribute("href") === currentPath ? (i.parentNode.classList += " current") : null;
       // console.log(`parent Ele: `, i.parentElement);
       // console.log(`parent Node: `, i.parentNode);
       // console.log(`a href: `, i.getAttribute("href"));
@@ -38,18 +36,16 @@ export default function Navbar({ navItems }) {
   return (
     <header>
       <nav className="site-nav">
-        <Link href={`/`} title={SITE_META.NAME}>
-          <a className="home-button">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
-            </svg>
-            <span className="sr-only">{SITE_META.NAME}</span>
-          </a>
+        <Link href={`/`} title={SITE_META.NAME} className="home-button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+          </svg>
+          <span className="sr-only">{SITE_META.NAME}</span>
         </Link>
         <button className="menu-button" onClick={handleClick}>
           {isOpen ? (
@@ -94,28 +90,16 @@ export default function Navbar({ navItems }) {
               <Link href={`/category/` + `arcade`}>Arcade</Link>
             </li>
             <li className="menu-item">
-              <Link href={`/category/casual`}>Casual</Link>
+              <Link href={`/category/board`}>Board</Link>
             </li>
             <li className="menu-item">
-              <Link href={`/category/girl`}>Girl</Link>
+              <Link href={`/category/junior`}>Junior</Link>
             </li>
             <li className="menu-item">
-              <Link href={`/category/io`}>IO</Link>
+              <Link href={`/category/puzzles`}>Puzzles</Link>
             </li>
             <li className="menu-item">
-              <Link href={`/category/match-3`}>Match 3</Link>
-            </li>
-            <li className="menu-item">
-              <Link href={`/category/puzzle`}>Puzzle</Link>
-            </li>
-            <li className="menu-item">
-              <Link href={`/category/racing`}>Racing</Link>
-            </li>
-            <li className="menu-item">
-              <Link href={`/category/shooting`}>Shooting</Link>
-            </li>
-            <li className="menu-item">
-              <Link href={`/category/simulation`}>Simulation</Link>
+              <Link href={`/category/classics`}>Classics</Link>
             </li>
             <li className="menu-item">
               <Link href={`/category/sports`}>Sports</Link>
