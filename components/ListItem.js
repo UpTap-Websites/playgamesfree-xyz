@@ -11,8 +11,8 @@ export default function ListItem({ item, type }) {
           className="image"
           src={type !== `banner` ? getGameIcon(item.gid) : getGameBanner(item.gid)}
           alt={item.title}
-          width={100}
-          height={100}
+          width={type !== `banner` ? 100 : 132}
+          height={type !== `banner` ? 100 : 81}
         />
         <div className="title">{item.title}</div>
         {/* <div className="category">{item.category.name}</div> */}
