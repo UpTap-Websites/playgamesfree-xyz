@@ -5,34 +5,34 @@ import Layout from "../components/Layout";
 import Link from "next/link";
 
 import { SITE_META } from "../lib/constants";
-import { getImageUrl } from "../lib/api";
+import { getDataForHome, getImageUrl } from "../lib/api";
 import data from "../data/games";
+import getGameIcon from "../utils/getGameIcon";
 
-export default function Home({ games }) {
-  console.log(`games: `, games);
+export default function Home({ data }) {
+  console.log(`data: `, data);
   // console.log(`categories: `, categories);
   return (
     <Layout>
       <Head>
         <title>{SITE_META.NAME + ` | ` + SITE_META.TAGLINE}</title>
         <meta name="description" content="Play the newest online casual games for free!" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <div className={`home`}>
-        {games.map((i, index) => (
+        {data.map((i, index) => (
           <section key={i.category.slug}>
             <div className={`section-head`}>
               <h2 className={`h2`}>{i.category.name + ` Games`}</h2>
-              <span className="total">{i.total}</span>
+              {/* <span className="total">{i.data.total}</span> */}
             </div>
             <ul className={`section-body`}>
-              {i.data.map((i) => (
+              {i.data.games.map((i) => (
                 <li className="list-item" key={i.slug}>
                   <Link href={`/game/` + i.slug}>
                     <Image
                       className="image"
-                      src={getImageUrl(i.title)}
+                      src={getGameIcon(i.gid)}
                       alt={i.title}
                       width={100}
                       height={100}
@@ -43,7 +43,7 @@ export default function Home({ games }) {
                 </li>
               ))}
             </ul>
-            {i.total > 6 ? (
+            {i.data.total > 6 ? (
               <Link href={`/category/` + i.category.slug} className="link-more">
                 More
               </Link>
@@ -56,21 +56,11 @@ export default function Home({ games }) {
 }
 
 export const getStaticProps = async (ctx) => {
-  const dataForHome = data?.data?.dataForHome;
-  // const categories = games.map((i) => i.category);
-  let games = dataForHome.slice().sort((i) => (i.total < 6 ? 1 : -1)); // 数量小于6的分类排序后置
-
-  games.forEach((i) => {
-    i.data.forEach((element) => {
-      delete element.id;
-      delete element.thumbnailUrl;
-      delete element.rating;
-    });
-  });
+  const data = await getDataForHome();
 
   return {
     props: {
-      games,
+      data,
       // categories,
     },
   };

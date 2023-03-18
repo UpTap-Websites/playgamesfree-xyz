@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { MODE } from "../lib/constants";
+import { DEV_MODE } from "../lib/constants";
 export default function Banner({
   client,
   slot,
@@ -12,7 +12,7 @@ export default function Banner({
   layoutKey,
   auto,
 }) {
-  const devMode = process.env.NODE_ENV === `development` || MODE === "dev"; // 判断是否开发模式
+  const devMode = process.env.NODE_ENV === `development` || DEV_MODE === true; // 判断是否开发模式
   useEffect(() => {
     try {
       (window.adsbygoogle || []).adsbygoogle.push({});

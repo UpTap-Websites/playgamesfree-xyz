@@ -21,27 +21,24 @@ export default function About(params) {
             <h2 className="h2">About</h2>
           </div>
           <div className="mx-8 p-4 rounded-md text-yellow-900 mb-4 bg-amber-200">
-            <p>Welcome to {SITE_META.NAME}!</p>
             <p>
-              Our website is the leading platform for free online gaming,
-              hosting high-quality hyper casual games for you to enjoy by
-              killing time when you are bored. Along with more complex adventure
-              and puzzle strategy games, that can save automatically and are
-              almost endless so you won’t get bored.
+              Welcome to our ultimate online gaming platform - your go-to destination for a wide
+              variety of free online games. At PlayGamesFree.xyz, we offer everything from thrilling
+              action games to brain-teasing puzzles and exciting sports games.
             </p>
             <p>
-              We develop and publish our own H5 games, and currently we have
-              more than a 200, which you can freely play, without requiring you
-              to download. Our games can be played on any device or a browser.
-              Such games include{" "}
-              {FEATURED_GAMES.map((i) => toTitle(i)).join(`, `)}.
+              Our user-friendly interface makes it easy to browse and find games that suit your
+              interests, and you can play them all directly in your browser - no downloads
+              necessary!
             </p>
             <p>
-              The games are divided in categories, which is therefore easy for
-              you and players all around the world to have fun with many puzzle,
-              strategy, card or sports games. Our games are entirely free and
-              won’t require you to pay any services, as they are safe and
-              secure.
+              We take pride in offering high-quality games that are sure to keep you entertained for
+              hours on end. With our free, fun games, you can enjoy gaming anytime, anywhere.
+            </p>
+            <p>
+              So, whether you're looking for a quick gaming fix during your lunch break or a full
+              day of non-stop entertainment, PlayGamesFree.xyz has got you covered. Come join the
+              fun and start playing today!"
             </p>
           </div>
         </section>

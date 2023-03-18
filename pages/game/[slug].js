@@ -2,12 +2,14 @@ import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
 import { useEffect } from "react";
-import Layout from "../../components/Layout";
-import List from "../../components/List";
+import Layout from "@/components/Layout";
+import List from "@/components/List";
 // import ListItem from "../../components/ListItem";
 import data from "../../data/games.json";
-import { getGameUrl, getImageUrl } from "../../lib/api";
-import { SITE_META } from "../../lib/constants";
+import { fetchAPI, getCategories, getImageUrl, getGameBySlug } from "@/lib/api";
+import { SITE_META } from "@/lib/constants";
+import getGameIcon from "@/utils/getGameIcon";
+import getGameUrl from "@/utils/getGameUrl";
 
 export default function Game({ game, relatedGames }) {
   console.log(`game: `, game);
@@ -32,7 +34,7 @@ export default function Game({ game, relatedGames }) {
           <div className="game-meta">
             <Image
               className="image"
-              src={getImageUrl(game.title)}
+              src={getGameIcon(game.gid)}
               width={200}
               height={200}
               alt={game.title}
@@ -42,7 +44,7 @@ export default function Game({ game, relatedGames }) {
               <h1 className="title">{game.title}</h1>
               <div className="game-info">
                 <div className="game-rating">
-                  <span>{game.rating}</span>
+                  <span>{Math.round(game.rating * 10)}</span>
                 </div>
                 <Link href={`/category/` + game.category.slug} className="game-category">
                   {game.category.name}
@@ -51,7 +53,7 @@ export default function Game({ game, relatedGames }) {
             </div>
           </div>
           <Link
-            href={getGameUrl(game.title)}
+            href={getGameUrl(game.slug)}
             className="play-btn"
             title={`Play ` + game.title + ` Now`}
           >
@@ -59,7 +61,7 @@ export default function Game({ game, relatedGames }) {
           </Link>
           <div className="description">
             <h3 className="font-bold mb-2">Description</h3>
-            {game.description}
+            <div dangerouslySetInnerHTML={{ __html: game.description }} />
           </div>
         </section>
         <section>
@@ -74,40 +76,44 @@ export default function Game({ game, relatedGames }) {
 }
 
 export const getStaticProps = async (ctx) => {
-  let fullData = data?.data?.fullData;
-  let basicData = data?.data?.basicData;
-
-  fullData.forEach((game) => {
-    delete game.id;
-    delete game.appid;
-    delete game.thumbnailUrl;
-    delete game.url;
-  });
-
-  let game = fullData.find((i) => i.slug === ctx.params.slug);
-
-  let relatedGames = basicData
-    .slice()
-    .filter((i) => i.slug !== ctx.params.slug)
-    .slice(0, 12);
-
-  relatedGames.slice().forEach((game) => {
-    delete game.rating;
-    delete game.thumbnailUrl;
-    delete game.id;
-  });
+  const data = await getGameBySlug(ctx.params.slug, 12);
 
   return {
     props: {
-      game,
-      relatedGames,
+      game: data?.games[0],
+      relatedGames: data?.related,
     },
   };
 };
 
 export const getStaticPaths = async () => {
-  const basicData = data?.data?.basicData;
-  const paths = basicData.map((i) => ({ params: { slug: i.slug } }));
+  const PER_PAGE = 48;
+  // 按分类取
+  const categories = await getCategories();
+  // console.log(`detai ..categories`, categories);
+  let data = [];
+  for (const item of categories) {
+    // console.log(`slug`, item.slug);
+    const tmp = await fetchAPI(
+      `
+        query ($category: String, $limit: Int ){
+          games (filter: { category: { slug: { _eq: $category } } }, limit: $limit) {
+            slug
+          }
+        }
+      `,
+      {
+        variables: {
+          limit: PER_PAGE,
+          category: item.slug,
+        },
+      }
+    );
+
+    data = data.concat(tmp.games.map((i) => i.slug));
+  }
+  // console.log(`detail data`, data);
+  const paths = data.map((i) => ({ params: { slug: i } }));
   return {
     paths,
     fallback: false,

@@ -5,7 +5,8 @@ import Layout from "../components/Layout";
 import { SITE_META } from "../lib/constants";
 import Link from "next/link";
 import data from "../data/games";
-import { getImageUrl } from "../lib/api";
+import { getDataForAll, getImageUrl } from "../lib/api";
+import getGameIcon from "@/utils/getGameIcon";
 
 export default function AllGames({ games }) {
   console.log(`all games: `, games);
@@ -14,7 +15,6 @@ export default function AllGames({ games }) {
       <Head>
         <title>{SITE_META.NAME + ` | ` + SITE_META.TAGLINE}</title>
         <meta name="description" content="Play the newest online casual games for free!" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <div className={`all xl:mx-auto`}>
@@ -29,7 +29,7 @@ export default function AllGames({ games }) {
                 <Link href={`/game/` + i.slug}>
                   <Image
                     className="image"
-                    src={getImageUrl(i.title)}
+                    src={getGameIcon(i.gid)}
                     alt={i.title}
                     width={100}
                     height={100}
@@ -50,15 +50,10 @@ export default function AllGames({ games }) {
 }
 
 export const getStaticProps = async (ctx) => {
-  let games = data?.data?.basicData;
-  games.forEach((element) => {
-    delete element.id;
-    delete element.rating;
-    delete element.thumbnailUrl;
-  });
+  const data = await getDataForAll();
   return {
     props: {
-      games,
+      games: data,
     },
   };
 };

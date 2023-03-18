@@ -89,7 +89,7 @@ body {
 
 /* List */
 .list-item .image {
-  @apply rounded-xl shadow-lg xl:hover:shadow-black/20 xl:hover:scale-110 xl:transform xl:duration-300 shadow-black/10 w-full border-4 border-amber-300;
+  @apply rounded-3xl shadow-lg xl:hover:shadow-black/20 xl:hover:scale-110 xl:transform xl:duration-300 shadow-black/10 w-full border-4 border-amber-300;
 }
 .list-item .title {
   @apply mt-2 text-xs text-center text-emerald-900;
@@ -116,7 +116,7 @@ body {
   @apply text-2xl leading-6 xl:text-5xl my-2 xl:mb-6 font-black text-emerald-700;
 }
 .game-meta .image {
-  @apply rounded-2xl border-8 border-amber-300 w-40 h-40 xl:w-[200px] xl:h-[200px] xl:shadow-xl xl:shadow-amber-200;
+  @apply rounded-[2.5rem] border-8 border-amber-300 w-40 h-40 xl:w-[200px] xl:h-[200px] xl:shadow-xl xl:shadow-amber-200;
 }
 .detail .description {
   @apply p-4 my-4 xl:my-6 rounded-lg bg-amber-200 text-emerald-800 text-sm xl:text-base;
