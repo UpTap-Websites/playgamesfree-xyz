@@ -101,7 +101,7 @@ export const getStaticPaths = async () => {
 
   let data = [];
   for (const item of categories) {
-    const tmp = await getGamesByCategory({ category: item.name.toLowerCase(), per_page: 12 });
+    const tmp = await getGamesByCategory({ category: item.name.toLowerCase(), per_page: 48 });
     data = data.concat(tmp.data);
     // data.push({
     //   // category: item.name,
@@ -112,7 +112,7 @@ export const getStaticPaths = async () => {
 
   // const data = await getDataForAll();
   console.log(`detail path data: `, data.length);
-  const paths = data.map((i) => ({ params: { slug: i.slug } }));
+  const paths = data.map((i) => ({ params: { slug: i.slug, id: i.id } }));
   return {
     paths,
     fallback: false,
