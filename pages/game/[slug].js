@@ -68,7 +68,7 @@ export default function Game({ game, relatedGames }) {
           <div className="section-head">
             <h2 className="h2">You may also like</h2>
           </div>
-          <List items={relatedGames} />
+          <List items={relatedGames} type={`banner`} />
         </section>
       </div>
     </Layout>

@@ -8,6 +8,7 @@ import { SITE_META } from "../lib/constants";
 import { getDataForHome, getImageUrl } from "../lib/api";
 import data from "../data/games";
 import getGameIcon from "../utils/getGameIcon";
+import getGameBanner from "@/utils/getGameBanner";
 
 export default function Home({ data }) {
   console.log(`data: `, data);
@@ -32,7 +33,7 @@ export default function Home({ data }) {
                   <Link href={`/game/` + i.slug}>
                     <Image
                       className="image"
-                      src={getGameIcon(i.gid)}
+                      src={getGameBanner(i.gid)}
                       alt={i.title}
                       width={100}
                       height={100}
