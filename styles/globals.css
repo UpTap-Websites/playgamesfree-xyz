@@ -44,10 +44,10 @@ body {
 
 /* Footer */
 .site-footer {
-  @apply bg-emerald-800 text-emerald-600 text-center;
+  @apply bg-emerald-800 text-emerald-400 text-center;
 }
 .footer-nav {
-  @apply bg-emerald-700 text-lime-500 p-3;
+  @apply bg-emerald-700 text-lime-400 p-3;
 }
 .footer-nav ul {
   @apply flex space-x-4 justify-center text-xs;

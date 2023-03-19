@@ -47,7 +47,7 @@ export default function Navbar({ navItems }) {
           </svg>
           <span className="sr-only">{SITE_META.NAME}</span>
         </Link>
-        <button className="menu-button" onClick={handleClick} arialLabel="menu">
+        <button className="menu-button" onClick={handleClick} arial-label="menu">
           {isOpen ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
