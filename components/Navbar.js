@@ -47,7 +47,7 @@ export default function Navbar({ navItems }) {
           </svg>
           <span className="sr-only">{SITE_META.NAME}</span>
         </Link>
-        <button className="menu-button" onClick={handleClick}>
+        <button className="menu-button" onClick={handleClick} arialLabel="menu">
           {isOpen ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -81,31 +81,49 @@ export default function Navbar({ navItems }) {
         <div className={(isOpen ? "" : "hidden ") + "menu-panel"}>
           <ul className="menu-list">
             <li className="menu-item">
-              <Link href={`/all`}>All</Link>
+              <Link href={`/all`} title={`All`}>
+                All
+              </Link>
             </li>
             <li className="menu-item">
-              <Link href={`/category/adventure`}>Adventure</Link>
+              <Link href={`/category/adventure`} title={`Adventure`}>
+                Adventure
+              </Link>
             </li>
             <li className="menu-item">
-              <Link href={`/category/` + `arcade`}>Arcade</Link>
+              <Link href={`/category/` + `arcade`} title={`Arcade`}>
+                Arcade
+              </Link>
             </li>
             <li className="menu-item">
-              <Link href={`/category/board`}>Board</Link>
+              <Link href={`/category/board`} title={`Board`}>
+                Board
+              </Link>
             </li>
             <li className="menu-item">
-              <Link href={`/category/junior`}>Junior</Link>
+              <Link href={`/category/junior`} title={`Junior`}>
+                Junior
+              </Link>
             </li>
             <li className="menu-item">
-              <Link href={`/category/puzzles`}>Puzzles</Link>
+              <Link href={`/category/puzzles`} title={`Puzzles`}>
+                Puzzles
+              </Link>
             </li>
             <li className="menu-item">
-              <Link href={`/category/classics`}>Classics</Link>
+              <Link href={`/category/classics`} title={`Classics`}>
+                Classics
+              </Link>
             </li>
             <li className="menu-item">
-              <Link href={`/category/sports`}>Sports</Link>
+              <Link href={`/category/sports`} title={`Sports`}>
+                Sports
+              </Link>
             </li>
             <li className="menu-item">
-              <Link href={`/category/strategy`}>Strategy</Link>
+              <Link href={`/category/strategy`} title={`Startegy`}>
+                Strategy
+              </Link>
             </li>
           </ul>
         </div>

@@ -26,7 +26,7 @@ export default function Game({ game, relatedGames }) {
   return (
     <Layout>
       <Head>
-        <title>{`Play ` + game.title + ` on ` + SITE_META.NAME}</title>
+        <title>{`Play ${game.title} on ${SITE_META.NAME}`}</title>
       </Head>
       <div className="detail max-w-5xl mx-auto">
         <section className="mx-8 xl:mx-0">
@@ -45,7 +45,7 @@ export default function Game({ game, relatedGames }) {
                 <div className="game-rating">
                   <span>{Math.round(game.rating * 10)}</span>
                 </div>
-                <Link href={`/category/` + game.category.slug} className="game-category">
+                <Link href={`/category/${game.category.slug}`} className="game-category">
                   {game.category.name}
                 </Link>
               </div>

@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function ListItem({ item, type }) {
   return (
     <li className="list-item">
-      <Link href={`/game/` + item.slug}>
+      <Link href={`/game/${item.slug}`} title={item.title}>
         <Image
           className="image"
           src={type !== `banner` ? getGameIcon(item.gid) : getGameBanner(item.gid)}
