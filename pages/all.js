@@ -15,6 +15,7 @@ export default function AllGames({ games }) {
       <Head>
         <title>{SITE_META.NAME + ` | ` + SITE_META.TAGLINE}</title>
         <meta name="description" content="Play the newest online casual games for free!" />
+        <link rel="canonical" href="https://www.playgamesfree.xyz/all" />
       </Head>
 
       <div className={`all xl:mx-auto`}>

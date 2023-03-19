@@ -7,6 +7,7 @@ export default function Terms(params) {
     <Layout>
       <Head>
         <title>{`Terms of Use` + ` | ` + SITE_META.NAME}</title>
+        <link rel="canonical" href="https://www.playgamesfree.xyz/terms" />
       </Head>
       <div className={`page xl:mx-auto`}>
         <section>

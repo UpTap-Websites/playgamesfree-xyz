@@ -15,6 +15,7 @@ export default function Home({ data }) {
       <Head>
         <title>{SITE_META.NAME + ` | ` + SITE_META.TAGLINE}</title>
         <meta name="description" content="Play the newest online casual games for free!" />
+        <link rel="canonical" href="https://www.playgamesfree.xyz" />
       </Head>
 
       <div className={`home`}>
@@ -43,7 +44,7 @@ export default function Home({ data }) {
               ))}
             </ul>
             {i.data.total > 6 ? (
-              <Link href={`/category/` + i.category.slug} className="link-more">
+              <Link href={`/category/` + i.category.slug} className="link-more" title="More">
                 More
               </Link>
             ) : null}

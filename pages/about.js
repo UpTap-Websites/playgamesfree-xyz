@@ -28,6 +28,7 @@ export default function About() {
     <Layout>
       <Head>
         <title>{`About` + ` | ` + SITE_META.NAME}</title>
+        <link rel="canonical" href="https://www.playgamesfree.xyz/about" />
       </Head>
       <div className={`page xl:mx-auto`}>
         <section>

@@ -27,6 +27,7 @@ export default function Game({ game, relatedGames }) {
     <Layout>
       <Head>
         <title>{`Play ${game.title} on ${SITE_META.NAME}`}</title>
+        <link rel="canonical" href={`https://www.playgamesfree.xyz/game/${game.slug}`} />
       </Head>
       <div className="detail max-w-5xl mx-auto">
         <section className="mx-8 xl:mx-0">
