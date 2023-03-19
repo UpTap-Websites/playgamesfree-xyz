@@ -7,3 +7,4 @@ Host: https://www.playgamesfree.xyz
 
 # Sitemaps
 Sitemap: https://www.playgamesfree.xyz/sitemap.xml
+Sitemap: https://www.playgamesfree.xyz/sitemap-0.xml

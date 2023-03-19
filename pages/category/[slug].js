@@ -58,7 +58,7 @@ export const getStaticProps = async (ctx) => {
     props: {
       games: data.games,
       total: data.total[0].countDistinct.id,
-      category: { name: data.category[0].name, slug: ctx.params.slug },
+      category: { name: data.category?.[0].name, slug: ctx.params.slug },
     },
   };
 };
