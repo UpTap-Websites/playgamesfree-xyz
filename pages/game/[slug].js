@@ -28,6 +28,7 @@ export default function Game({ game, relatedGames }) {
     <Layout>
       <Head>
         <title>{`Play ${game.title} on ${SITE_META.NAME}`}</title>
+        <meta name="description" content={`Play ${game.title} on ${SITE_META.NAME}`} />
         <link rel="canonical" href={`https://www.playgamesfree.xyz/game/${game.slug}`} />
       </Head>
       <AdScript />

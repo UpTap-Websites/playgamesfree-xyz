@@ -15,7 +15,7 @@ export default function Home({ data }) {
     <Layout>
       <Head>
         <title>{SITE_META.NAME + ` | ` + SITE_META.TAGLINE}</title>
-        <meta name="description" content="Play the newest online casual games for free!" />
+        <meta name="description" content="Play online games for free!" />
         <link rel="canonical" href="https://www.playgamesfree.xyz" />
       </Head>
       <AdScript />

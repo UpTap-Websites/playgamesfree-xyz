@@ -15,7 +15,7 @@ export default function Category({ games, category, total }) {
     <Layout>
       <Head>
         <title>{category.name + ` Games | ` + SITE_META.NAME}</title>
-        <meta name="description" content="Play the newest online casual games for free!" />
+        <meta name="description" content={`Play ${category.name} games on ${SITE_META.NAME}`} />
         <link rel="canonical" href={`https://www.playgamesfree.xyz/category/${category.slug}`} />
       </Head>
       <AdScript />
