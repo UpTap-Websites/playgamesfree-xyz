@@ -9,6 +9,7 @@ import { fetchAPI, getCategories, getGameBySlug } from "@/lib/api";
 import { SITE_META } from "@/lib/constants";
 import getGameIcon from "@/utils/getGameIcon";
 import getGameUrl from "@/utils/getGameUrl";
+import AdScript from "@/components/AdScript";
 
 export default function Game({ game, relatedGames }) {
   console.log(`game: `, game);
@@ -29,6 +30,7 @@ export default function Game({ game, relatedGames }) {
         <title>{`Play ${game.title} on ${SITE_META.NAME}`}</title>
         <link rel="canonical" href={`https://www.playgamesfree.xyz/game/${game.slug}`} />
       </Head>
+      <AdScript />
       <div className="detail max-w-5xl mx-auto">
         <section className="mx-8 xl:mx-0">
           <div className="game-meta">

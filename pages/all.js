@@ -7,6 +7,7 @@ import { SITE_META } from "../lib/constants";
 import { getDataForAll } from "../lib/api";
 
 import ListItem from "@/components/ListItem";
+import AdScript from "@/components/AdScript";
 
 export default function AllGames({ games }) {
   console.log(`all games: `, games);
@@ -17,7 +18,7 @@ export default function AllGames({ games }) {
         <meta name="description" content="Play the newest online casual games for free!" />
         <link rel="canonical" href="https://www.playgamesfree.xyz/all" />
       </Head>
-
+      <AdScript />
       <div className={`all xl:mx-auto`}>
         <section>
           <div className={`section-head`}>

@@ -7,6 +7,7 @@ import { SITE_META } from "@/lib/constants";
 
 import { getCategories, getGamesByCategorySlug } from "@/lib/api";
 import getGameIcon from "@/utils/getGameIcon";
+import AdScript from "@/components/AdScript";
 
 export default function Category({ games, category, total }) {
   console.log(`games: `, games);
@@ -17,7 +18,7 @@ export default function Category({ games, category, total }) {
         <meta name="description" content="Play the newest online casual games for free!" />
         <link rel="canonical" href={`https://www.playgamesfree.xyz/category/${category.slug}`} />
       </Head>
-
+      <AdScript />
       <div className={`category`}>
         <section>
           <div className={`section-head`}>

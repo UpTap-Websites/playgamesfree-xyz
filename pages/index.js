@@ -6,6 +6,7 @@ import Link from "next/link";
 import ListItem from "@/components/ListItem";
 import { getDataForHome } from "../lib/api";
 import { SITE_META } from "../lib/constants";
+import AdScript from "@/components/AdScript";
 
 export default function Home({ data }) {
   console.log(`data: `, data);
@@ -17,7 +18,7 @@ export default function Home({ data }) {
         <meta name="description" content="Play the newest online casual games for free!" />
         <link rel="canonical" href="https://www.playgamesfree.xyz" />
       </Head>
-
+      <AdScript />
       <div className={`home`}>
         {data.map((i, index) => (
           <section key={i.category.slug}>
