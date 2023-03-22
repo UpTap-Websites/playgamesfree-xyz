@@ -1,2 +1,3 @@
-# Adsense / uptapgame.com
-# google.com, pub-4975852181579567, DIRECT, f08c47fec0942fa0
+# Adsense / 2023.03.22
+
+google.com, pub-6121457896776967, DIRECT, f08c47fec0942fa0
