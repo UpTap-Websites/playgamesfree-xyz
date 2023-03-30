@@ -3,7 +3,7 @@ import List from "@/components/List";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 // import ListItem from "../../components/ListItem";
 import { fetchAPI, getCategories, getGameBySlug } from "@/lib/api";
 import { SITE_META } from "@/lib/constants";
@@ -12,51 +12,90 @@ import getGameUrl from "@/utils/getGameUrl";
 import AdScript from "@/components/AdScript";
 import AdSense from "@/components/AdSense";
 
+import Draggable, { DraggableCore } from "react-draggable";
+
 import { demoData } from "@/data/detail";
 
 export default function Game({ game, relatedGames }) {
-  console.log(`game: `, JSON.stringify(game));
-  console.log(`relatedGames: `, JSON.stringify(relatedGames));
+  // console.log(`game: `, JSON.stringify(game));
+  // console.log(`relatedGames: `, JSON.stringify(relatedGames));
+
+  const [isPlayerOpen, setIsPlayerOpen] = useState(false);
+
+  const [isClick, setIsClick] = useState(false); // is Clicked
+
+  const draggableRef = useRef(null);
+
+  const gameUrl = getGameUrl(game.slug);
+
+  function handleStart() {
+    if (!draggableRef.current) {
+      return;
+    }
+    setIsClick(true);
+  }
+  function handleDrag() {
+    setIsClick(false);
+  }
+  function handleEnd() {
+    if (isClick) {
+      console.log(`isClick`, isClick);
+      setIsPlayerOpen(false);
+    }
+  }
 
   useEffect(() => {
-    // 推送Play按钮点击数据
-    const gameUrl = getGameUrl(game.slug);
-    const PLAYER = document.querySelector(".player");
-    const CTA = document.querySelector(".play-btn");
-    const backBtn = document.querySelector(".back-btn");
-    const gameIframe = document.querySelector(".game-iframe");
-    const BODY = document.querySelector("body");
-    const DESC = document.querySelector(".description");
+    const _body = document.querySelector("body"); // 用于添加overflow-hidden
 
+    const _desc = document.querySelector(".description");
+
+    const _playBtn = document.querySelector(".play-btn");
+    const _player = document.querySelector(".player");
+    const _gameIframe = document.querySelector(".game-iframe");
+
+    const _backBtn = document.querySelector(".back-btn");
+
+    if (isPlayerOpen) {
+      _gameIframe.src = gameUrl; // 关闭后再打开时赋值
+      _player.classList.remove("hidden");
+      _body.classList.add("overflow-hidden");
+    } else {
+      _gameIframe.src = "";
+      _player.classList.add("hidden");
+      _body.classList.remove("overflow-hidden");
+    }
+
+    // deal with the play button
     function handleClickPlay(e) {
-      process.env.NODE_ENV === `development` ? e.preventDefault() : null;
-      console.log(`Event: `, e);
+      e.preventDefault();
+      setIsPlayerOpen(true);
+
       gtag && gtag("event", "click_CTA", { game: game.title });
-      gameIframe.src = gameUrl; // 关闭后再打开时赋值
-      PLAYER.classList.toggle("hidden");
-      BODY.classList.toggle("overflow-hidden");
     }
 
+    // deal with the back button
     function handleClickBack(e) {
-      BODY.classList.remove("overflow-hidden");
-      PLAYER.classList.add("hidden");
-      gameIframe.src = "";
+      setIsPlayerOpen(false);
     }
 
+    // deal with the description
     function handleClickDesc(e) {
-      DESC.classList.toggle("show-all");
+      _desc.classList.toggle("show-all");
     }
 
-    DESC.addEventListener("click", handleClickDesc);
-    CTA.addEventListener("click", handleClickPlay);
-    backBtn.addEventListener("click", handleClickBack);
+    _playBtn.addEventListener("click", handleClickPlay);
+    _backBtn.addEventListener("click", handleClickBack);
+
+    _desc.addEventListener("click", handleClickDesc);
 
     return () => {
-      DESC.removeEventListener("click", handleClickDesc);
-      CTA.removeEventListener("click", handleClickPlay);
-      backBtn.removeEventListener("click", handleClickBack);
+      _playBtn.removeEventListener("click", handleClickPlay);
+      _backBtn.removeEventListener("click", handleClickBack);
+
+      _desc.removeEventListener("click", handleClickDesc);
     };
-  }, [game]);
+  }, [isPlayerOpen, game.title, gameUrl]);
+
   return (
     <Layout>
       <Head>
@@ -68,9 +107,34 @@ export default function Game({ game, relatedGames }) {
       <div className="detail mx-auto grid xl:grid-cols-12 xl:gap-8 xl:mx-8">
         <section className="xl:flex xl:flex-col mx-8 xl:grow xl:mx-0 xl:order-2 xl:col-span-6">
           <div className="player hidden xl:mb-4 fixed inset-0 xl:block xl:static bg-black/90 backdrop-blur z-10">
-            <div className="back-btn text-xs uppercase p-4 pl-2 top-1 left-0 rounded-r-full bg-emerald-500 text-white xl:hidden absolute overflow-hidden z-20">
-              <b>back</b>
-            </div>
+            <Draggable
+              nodeRef={draggableRef}
+              axis="y"
+              bounds="parent"
+              onStart={handleStart}
+              onDrag={handleDrag}
+              onStop={handleEnd}
+            >
+              <div
+                ref={draggableRef}
+                className="back-btn text-xs uppercase p-4 pl-2 top-1 left-0 rounded-r-full bg-emerald-500/80 text-white xl:hidden absolute overflow-hidden z-20"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={3}
+                  stroke="currentColor"
+                  className="h-6 w-6 text-white"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15.75 19.5L8.25 12l7.5-7.5"
+                  />
+                </svg>
+              </div>
+            </Draggable>
             <iframe className="game-iframe" src={getGameUrl(game.slug)}></iframe>
           </div>
           <div className="game-meta flex flex-col items-center mb-6 xl:flex-row">
