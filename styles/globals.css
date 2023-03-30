@@ -92,7 +92,10 @@ body {
   @apply rounded-3xl shadow-lg xl:hover:shadow-black/20 xl:hover:scale-110 xl:transform xl:duration-300 shadow-black/10 w-full border-4 border-amber-300;
 }
 .list-item .title {
-  @apply mt-2 text-xs text-center text-emerald-900;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  @apply mt-2 h-8 text-xs text-center overflow-hidden text-emerald-900;
 }
 .link-more {
   @apply block mx-8 uppercase text-sm text-yellow-900 text-center border bg-amber-300 border-amber-400 mt-4 py-1 rounded-sm shadow-sm shadow-amber-200;
@@ -103,23 +106,37 @@ body {
   @apply justify-center xl:justify-start;
 }
 /* Detail */
+.game-iframe {
+  @apply xl:w-full xl:aspect-video border-0 h-screen w-screen xl:h-auto;
+}
 .detail .section-head {
-  @apply xl:mx-0;
+  @apply justify-center xl:justify-start mx-3 mb-2;
 }
 .detail .h2 {
   @apply text-xl;
 }
-.game-meta {
-  @apply flex mb-6 xl:space-x-0 space-x-4 xl:justify-between xl:flex-row-reverse;
-}
-.game-meta .title {
+/* .game-meta {
+  @apply flex mb-6 xl:space-x-0 space-x-4;
+} */
+/* .game-meta .title {
   @apply text-2xl leading-6 xl:text-5xl my-2 xl:mb-6 font-black text-emerald-700;
-}
-.game-meta .image {
+} */
+/* .game-meta .image {
   @apply rounded-[2.5rem] border-8 border-amber-300 w-40 h-40 xl:w-[200px] xl:h-[200px] xl:shadow-xl xl:shadow-amber-200;
-}
+} */
 .detail .description {
-  @apply p-4 my-4 xl:my-6 rounded-lg bg-amber-200 text-emerald-800 text-sm xl:text-base;
+  @apply overflow-hidden p-4 my-4 xl:mb-6 xl:mt-0 rounded-lg bg-amber-200 text-emerald-800 text-sm xl:text-base;
+}
+
+.description .content {
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  @apply overflow-hidden max-w-5xl;
+}
+
+.description.show-all .content {
+  -webkit-box-orient: inherit;
 }
 .game-info {
   @apply xl:flex xl:flex-row xl:items-center xl:space-x-2;
@@ -133,8 +150,15 @@ body {
 .play-btn {
   @apply block text-center bg-sky-500 xl:w-[300px] py-4 px-8 text-white rounded-full font-bold text-xl shadow-lg shadow-sky-600/20;
 }
-.detail .list {
-  @apply mx-8 xl:mx-0 mb-4 grid xl:grid-cols-6 grid-cols-2 gap-4 xl:gap-6;
+/* .detail aside {
+  @apply xl:max-w-xs;
+} */
+.detail aside .list {
+  @apply mx-8 xl:mx-0 mb-4 grid xl:grid-cols-3 grid-cols-2 gap-4;
+}
+
+.popular .list {
+  @apply mb-4 grid gap-4 grid-cols-2 xl:grid-cols-6;
 }
 
 /* Page */
