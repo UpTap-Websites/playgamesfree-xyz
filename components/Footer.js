@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { SITE_META } from "../lib/constants";
-import Logo from "../public/brand/playgamesfree-logo.png";
+import { SITE_META } from "@/lib/constants";
+import Logo from "@/public/brand/playgamesfree-logo.png";
 // import { useRouter } from "next/router";
 export default function Footer(params) {
   return (

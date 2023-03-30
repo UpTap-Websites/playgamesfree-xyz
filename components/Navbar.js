@@ -35,7 +35,7 @@ export default function Navbar({ navItems }) {
   }, [currentPath]);
   return (
     <header>
-      <nav className="site-nav">
+      <nav role={`navigation`} className="site-nav">
         <Link href={`/`} title={SITE_META.NAME} className="home-button">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +79,7 @@ export default function Navbar({ navItems }) {
           )}
         </button>
         <div className={(isOpen ? "" : "hidden ") + "menu-panel"}>
-          <ul className="menu-list">
+          <ul role={`list`} className="menu-list">
             <li className="menu-item">
               <Link href={`/all`} title={`All`}>
                 All

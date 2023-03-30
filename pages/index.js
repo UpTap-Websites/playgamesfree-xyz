@@ -7,6 +7,7 @@ import ListItem from "@/components/ListItem";
 import { getDataForHome } from "@/lib/api";
 import { SITE_META } from "@/lib/constants";
 import AdScript from "@/components/AdScript";
+import Microformat from "@/components/Microformat";
 
 export default function Home({ data }) {
   console.log(`data: `, data);
@@ -18,6 +19,7 @@ export default function Home({ data }) {
         <meta name="description" content="Play online games for free!" />
         <link rel="canonical" href="https://www.playgamesfree.xyz" />
       </Head>
+      <Microformat id="home" type="WebSite" />
       <AdScript />
       <div className={`home`}>
         {data.map((item, index) => (

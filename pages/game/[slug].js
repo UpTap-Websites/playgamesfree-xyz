@@ -13,6 +13,7 @@ import AdScript from "@/components/AdScript";
 import AdSense from "@/components/AdSense";
 
 import Draggable from "react-draggable";
+import Microformat from "@/components/Microformat";
 
 // import { demoData } from "@/data/detail";
 
@@ -103,6 +104,7 @@ export default function Game({ game, relatedGames }) {
         <meta name="description" content={`Play ${game.title} on ${SITE_META.NAME}`} />
         <link rel="canonical" href={`https://www.playgamesfree.xyz/game/${game.slug}`} />
       </Head>
+      <Microformat id={game.gid} item={game} type={`Game`} />
       <AdScript />
       <div className="detail mx-auto grid xl:grid-cols-12 xl:gap-8 xl:mx-8">
         <section className="xl:flex xl:flex-col mx-8 xl:grow xl:mx-0 xl:order-2 xl:col-span-6">
