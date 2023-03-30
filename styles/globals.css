@@ -92,10 +92,10 @@ body {
   @apply rounded-3xl shadow-lg xl:hover:shadow-black/20 xl:hover:scale-110 xl:transform xl:duration-300 shadow-black/10 w-full border-4 border-amber-300;
 }
 .list-item .title {
-  -webkit-box-orient: vertical;
+  /* -webkit-box-orient: vertical;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
-  @apply mt-2 h-8 text-xs text-center overflow-hidden text-emerald-900;
+  -webkit-line-clamp: 2; */
+  @apply mt-2 h-8 text-xs text-center overflow-hidden text-emerald-900 line-clamp-2;
 }
 .link-more {
   @apply block mx-8 uppercase text-sm text-yellow-900 text-center border bg-amber-300 border-amber-400 mt-4 py-1 rounded-sm shadow-sm shadow-amber-200;
@@ -129,10 +129,10 @@ body {
 }
 
 .description .content {
-  -webkit-box-orient: vertical;
+  /* -webkit-box-orient: vertical;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
-  @apply overflow-hidden max-w-5xl;
+  -webkit-line-clamp: 4; */
+  @apply overflow-hidden max-w-5xl line-clamp-4;
 }
 
 .description.show-all .content {

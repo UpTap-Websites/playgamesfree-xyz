@@ -60,7 +60,6 @@ export default function Game({ game, relatedGames }) {
       _player.classList.remove("hidden");
       _body.classList.add("overflow-hidden");
     } else {
-      _gameIframe.src = "";
       _player.classList.add("hidden");
       _body.classList.remove("overflow-hidden");
     }
@@ -76,6 +75,7 @@ export default function Game({ game, relatedGames }) {
     // deal with the back button
     function handleClickBack(e) {
       setIsPlayerOpen(false);
+      _gameIframe.src = "";
     }
 
     // deal with the description
