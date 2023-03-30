@@ -1,6 +1,6 @@
 import Head from "next/head";
-import Layout from "../components/Layout";
-import { SITE_META } from "../lib/constants";
+import Layout from "@/components/Layout";
+import { SITE_META } from "@/lib/constants";
 
 export default function About() {
   const content = `

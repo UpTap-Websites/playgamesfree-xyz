@@ -1,11 +1,11 @@
 import Head from "next/head";
-import Layout from "../components/Layout";
+import Layout from "@/components/Layout";
 
 import Link from "next/link";
 
 import ListItem from "@/components/ListItem";
-import { getDataForHome } from "../lib/api";
-import { SITE_META } from "../lib/constants";
+import { getDataForHome } from "@/lib/api";
+import { SITE_META } from "@/lib/constants";
 import AdScript from "@/components/AdScript";
 
 export default function Home({ data }) {
@@ -20,32 +20,19 @@ export default function Home({ data }) {
       </Head>
       <AdScript />
       <div className={`home`}>
-        {data.map((i, index) => (
-          <section key={i.category.slug}>
+        {data.map((item, index) => (
+          <section key={item.category.slug}>
             <div className={`section-head`}>
-              <h2 className={`h2`}>{i.category.name + ` Games`}</h2>
-              {/* <span className="total">{i.data.total}</span> */}
+              <h2 className={`h2`}>{item.category.name + ` Games`}</h2>
+              {/* <span className="total">{item.data.total}</span> */}
             </div>
             <ul className={`section-body`}>
-              {i.data.games.map((i) => (
-                <ListItem item={i} type={`banner`} key={i.slug} />
-                // <li className="list-item" key={i.slug}>
-                //   <Link href={`/game/` + i.slug}>
-                //     <Image
-                //       className="image"
-                //       src={getGameBanner(i.gid)}
-                //       alt={i.title}
-                //       width={100}
-                //       height={100}
-                //       loading={index <= 1 ? `eager` : `lazy`}
-                //     />
-                //     <div className="title">{i.title}</div>
-                //   </Link>
-                // </li>
+              {item.data.games.map((item) => (
+                <ListItem item={item} type={`banner`} key={item.slug} />
               ))}
             </ul>
-            {i.data.total > 6 ? (
-              <Link href={`/category/` + i.category.slug} className="link-more" title="More">
+            {item.data.total > 6 ? (
+              <Link href={`/category/` + item.category.slug} className="link-more" title="More">
                 More
               </Link>
             ) : null}

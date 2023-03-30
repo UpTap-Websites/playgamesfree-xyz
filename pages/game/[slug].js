@@ -12,9 +12,9 @@ import getGameUrl from "@/utils/getGameUrl";
 import AdScript from "@/components/AdScript";
 import AdSense from "@/components/AdSense";
 
-import Draggable, { DraggableCore } from "react-draggable";
+import Draggable from "react-draggable";
 
-import { demoData } from "@/data/detail";
+// import { demoData } from "@/data/detail";
 
 export default function Game({ game, relatedGames }) {
   // console.log(`game: `, JSON.stringify(game));
