@@ -101,14 +101,20 @@ export default function Game({ game, relatedGames }) {
     <Layout>
       <Head>
         <title>{`Play ${game.title} on ${SITE_META.NAME}`}</title>
-        <meta name="description" content={`Play ${game.title} on ${SITE_META.NAME}`} />
-        <link rel="canonical" href={`https://www.playgamesfree.xyz/game/${game.slug}`} />
+        <meta
+          name="description"
+          content={`Play ${game.title} on ${SITE_META.NAME}`}
+        />
+        <link
+          rel="canonical"
+          href={`https://www.playgamesfree.xyz/game/${game.slug}`}
+        />
       </Head>
       <Microformat id={game.gid} item={game} type={`Game`} />
       <AdScript />
-      <div className="detail mx-auto grid xl:grid-cols-12 xl:gap-8 xl:mx-8">
-        <section className="xl:flex xl:flex-col mx-8 xl:grow xl:mx-0 xl:order-2 xl:col-span-6">
-          <div className="player hidden xl:mb-4 fixed inset-0 xl:block xl:static bg-black/90 backdrop-blur z-10">
+      <div className="detail">
+        <section className="mx-8 xl:order-2 xl:col-span-6 xl:mx-0 xl:flex xl:grow xl:flex-col">
+          <div className="player hidden">
             <Draggable
               nodeRef={draggableRef}
               axis="y"
@@ -117,10 +123,7 @@ export default function Game({ game, relatedGames }) {
               onDrag={handleDrag}
               onStop={handleEnd}
             >
-              <div
-                ref={draggableRef}
-                className="back-btn text-xs uppercase p-4 pl-2 top-1 left-0 rounded-r-full bg-emerald-500/80 text-white xl:hidden absolute overflow-hidden z-20"
-              >
+              <div ref={draggableRef} className="back-btn">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -137,11 +140,14 @@ export default function Game({ game, relatedGames }) {
                 </svg>
               </div>
             </Draggable>
-            <iframe className="game-iframe" src={getGameUrl(game.slug)}></iframe>
+            <iframe
+              className="game-iframe"
+              src={getGameUrl(game.slug)}
+            ></iframe>
           </div>
-          <div className="game-meta flex flex-col items-center mb-6 xl:flex-row">
+          <div className="game-meta">
             <Image
-              className="image rounded-[2rem] border-4 border-amber-300 w-32 h-32 xl:mr-3 xl:w-28 xl:h-28 xl:shadow-xl xl:shadow-amber-200"
+              className="image"
               src={getGameIcon(game.gid)}
               width={200}
               height={200}
@@ -149,14 +155,15 @@ export default function Game({ game, relatedGames }) {
               loading={`eager`}
             />
             <div>
-              <h1 className="title text-2xl leading-6 my-2 xl:mb-2 font-black text-emerald-700">
-                {game.title}
-              </h1>
-              <div className="game-info mx-auto flex gap-2 items-center justify-center xl:justify-start">
+              <h1 className="title">{game.title}</h1>
+              <div className="game-info">
                 <div className="game-rating">
                   <span>{(game.rating * 5).toFixed(1)}</span>
                 </div>
-                <Link href={`/category/${game.category.slug}`} className="game-category">
+                <Link
+                  href={`/category/${game.category.slug}`}
+                  className="game-category"
+                >
                   {game.category.name}
                 </Link>
               </div>
@@ -164,14 +171,17 @@ export default function Game({ game, relatedGames }) {
           </div>
           <Link
             href={getGameUrl(game.slug)}
-            className="play-btn mx-auto xl:hidden"
+            className="play-btn"
             title={`Play ` + game.title + ` Now`}
           >
             Play Now
           </Link>
           <div className="description grow">
-            <h3 className="font-bold mb-2">Description</h3>
-            <div className="content" dangerouslySetInnerHTML={{ __html: game.description }} />
+            <h3 className="mb-2 font-bold">Description</h3>
+            <div
+              className="content"
+              dangerouslySetInnerHTML={{ __html: game.description }}
+            />
           </div>
           <div className="popular">
             <div className="section-head">
