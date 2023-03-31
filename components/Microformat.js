@@ -19,10 +19,10 @@ export default function Microformat({ id, item, type = "Game" }) {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       image: `${getGameIcon(item.gid)}`,
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: `${(item.rating * 10).toFixed(1)}`,
-      },
+      // aggregateRating: {
+      //   "@type": "AggregateRating",
+      //   ratingValue: `${(item.rating * 5).toFixed(1)}`,
+      // },
       applicationCategory: "VideoGame",
       applicationSubCategory: `${item.category.name} Game`,
       genre: `${item.category.name}`,

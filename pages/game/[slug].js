@@ -154,7 +154,7 @@ export default function Game({ game, relatedGames }) {
               </h1>
               <div className="game-info mx-auto flex gap-2 items-center justify-center xl:justify-start">
                 <div className="game-rating">
-                  <span>{(game.rating * 10).toFixed(1)}</span>
+                  <span>{(game.rating * 5).toFixed(1)}</span>
                 </div>
                 <Link href={`/category/${game.category.slug}`} className="game-category">
                   {game.category.name}
