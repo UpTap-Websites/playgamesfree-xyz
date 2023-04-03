@@ -12,7 +12,7 @@ export default function Microformat({ id, item, type = "Game" }) {
       "@context": "https://schema.org",
       "@type": "Organization",
       url: SITE_META.URL,
-      logo: `${SITE_META.URL}/brand/playgamesfree-logo.png`,
+      logo: `${SITE_META.URL}/assets/brand/playgamesfree-logo.png`,
     };
   } else if (type == "Game") {
     schemaData = {

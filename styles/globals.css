@@ -5,12 +5,12 @@
 /* Basic */
 html,
 body {
-  @apply bg-emerald-800 font-['Nunito'];
+  @apply bg-emerald-800;
 }
 
 /* Layout */
 .wrapper {
-  @apply flex min-h-screen flex-col bg-amber-100;
+  @apply flex min-h-screen flex-col bg-gradient-to-b from-white to-amber-50 bg-fixed;
 }
 
 /* Kit */
@@ -38,16 +38,16 @@ body {
   @apply absolute right-0 top-0 grid h-6 w-6 content-center justify-center text-emerald-700 xl:hidden;
 }
 .menu-panel {
-  @apply mt-4 rounded-3xl bg-emerald-800 p-3 text-yellow-400 shadow-lg xl:ml-3 xl:mt-0 xl:block xl:pl-20 xl:shadow-yellow-900/20;
+  @apply mt-4 rounded-3xl bg-emerald-800 p-3 text-yellow-400 shadow-lg xl:mt-0 xl:block xl:rounded-full xl:shadow-yellow-900/20;
 }
 .menu-list {
-  @apply grid grid-cols-3 gap-2 xl:flex;
+  @apply grid grid-cols-3 gap-2 xl:flex xl:justify-center;
 }
 .menu-item {
   @apply rounded-xl border-2 border-emerald-700 bg-emerald-700 px-2 py-1.5 text-center text-sm xl:transform xl:border-transparent xl:bg-transparent xl:py-2 xl:duration-500 xl:ease-in-out xl:hover:bg-emerald-700;
 }
 .menu-item.current {
-  @apply border-lime-600 bg-emerald-700 text-yellow-200;
+  @apply border-lime-600 bg-emerald-700 text-yellow-300;
 }
 
 /* Footer */
@@ -77,19 +77,24 @@ body {
   @apply mb-6;
 }
 .section-head {
-  @apply mx-8 mb-4 flex items-center space-x-2 text-emerald-700 xl:mb-5;
+  @apply mx-5 mb-4 flex items-center space-x-2 font-bold text-emerald-700 xl:mx-8 xl:mb-5;
 }
-.section-head .h2 {
-  @apply text-lg font-bold;
+.category .section-head .h2,
+.all .section-head .h2,
+.page .section-head .h2 {
+  @apply text-lg font-bold xl:border-l-4 xl:border-l-orange-600 xl:pl-3 xl:text-2xl;
 }
 .total {
   @apply rounded-md bg-yellow-200 px-2 py-1 text-xs;
 }
 .section-body {
-  @apply mx-8 grid grid-cols-3 gap-4 xl:grid-cols-12;
+  @apply mx-5 grid grid-cols-3 gap-4 xl:mx-8 xl:grid-cols-12;
 }
 .home .section-head {
-  @apply grid-cols-2 xl:mb-3;
+  @apply grid-cols-2 xl:mx-10 xl:mb-3;
+}
+.home .section-head h2 {
+  @apply bg-gradient-to-r from-rose-500 from-30% to-amber-400 bg-clip-text text-xl font-bold text-transparent;
 }
 .home .section-body {
   @apply grid-cols-2;
@@ -112,7 +117,7 @@ body {
   @apply mt-2 line-clamp-2 h-8 overflow-hidden text-center text-xs text-emerald-900;
 }
 .link-more {
-  @apply mx-8 mt-4 block rounded-sm border border-amber-400 bg-amber-300 py-1 text-center text-sm uppercase text-yellow-900 shadow-sm shadow-amber-200;
+  @apply mx-5 mt-4 block rounded-sm border border-amber-400 bg-amber-300 py-1 text-center text-sm uppercase text-yellow-900 shadow-sm shadow-amber-200 xl:mx-10;
 }
 /* Category */
 .category .section-head,

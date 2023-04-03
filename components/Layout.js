@@ -1,14 +1,14 @@
 import Footer from "./Footer";
 import Navbar from "./Navbar";
-import { Nunito } from "next/font/google";
+import { Montserrat } from "next/font/google";
 
-const nunito = Nunito({ subsets: ["latin"] });
+const montserrat = Montserrat({ subsets: ["latin"] });
 
 export default function Layout({ children }) {
   return (
-    <div className={`wrapper ${nunito.className}`}>
+    <div className={`wrapper ${montserrat.className}`}>
       <Navbar />
-      <main className="grow my-4">{children}</main>
+      <main className="my-4 grow">{children}</main>
       <Footer />
     </div>
   );

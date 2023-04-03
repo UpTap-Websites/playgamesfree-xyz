@@ -8,6 +8,8 @@ import { getDataForHome } from "@/lib/api";
 import { SITE_META } from "@/lib/constants";
 import AdScript from "@/components/AdScript";
 import Microformat from "@/components/Microformat";
+import Image from "next/image";
+import Icons from "@/components/Icons";
 
 export default function Home({ data }) {
   console.log(`data: `, data);
@@ -25,6 +27,12 @@ export default function Home({ data }) {
         {data.map((item, index) => (
           <section key={item.category.slug}>
             <div className={`section-head`}>
+              <Image
+                src={Icons(item.category.name)}
+                alt=""
+                width={20}
+                height={20}
+              />
               <h2 className={`h2`}>{item.category.name + ` Games`}</h2>
               {/* <span className="total">{item.data.total}</span> */}
             </div>
@@ -34,7 +42,11 @@ export default function Home({ data }) {
               ))}
             </ul>
             {item.data.total > 6 ? (
-              <Link href={`/category/` + item.category.slug} className="link-more" title="More">
+              <Link
+                href={`/category/` + item.category.slug}
+                className="link-more"
+                title="More"
+              >
                 More
               </Link>
             ) : null}

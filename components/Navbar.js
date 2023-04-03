@@ -2,6 +2,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { SITE_META } from "../lib/constants";
+import Logo from "@/public/assets/brand/playgamesfree-logo.png";
+import Image from "next/image";
 
 export default function Navbar({ navItems }) {
   const [isOpen, setIsOpen] = useState(false); // 默认不展开导航菜单
@@ -25,7 +27,9 @@ export default function Navbar({ navItems }) {
     currentItem && currentItem.classList.remove("current"); // 如果存在.current则先移除
 
     for (let i of menuItems) {
-      i.getAttribute("href") === currentPath ? (i.parentNode.classList += " current") : null;
+      i.getAttribute("href") === currentPath
+        ? (i.parentNode.classList += " current")
+        : null;
       // console.log(`parent Ele: `, i.parentElement);
       // console.log(`parent Node: `, i.parentNode);
       // console.log(`a href: `, i.getAttribute("href"));
@@ -36,18 +40,25 @@ export default function Navbar({ navItems }) {
   return (
     <header>
       <nav role={`navigation`} className="site-nav">
-        <Link href={`/`} title={SITE_META.NAME} className="home-button">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
-          </svg>
-          <span className="sr-only">{SITE_META.NAME}</span>
+        <Link
+          href={`/`}
+          title={SITE_META.NAME}
+          className="site-logo flex items-center gap-2 font-bold text-emerald-700 xl:absolute xl:left-8 xl:top-3 xl:-translate-x-0 xl:text-lg xl:text-yellow-300"
+        >
+          <Image
+            src={Logo}
+            className="h-8 w-8 xl:h-10 xl:w-10"
+            alt={SITE_META.NAME}
+            width={40}
+            height={40}
+          />
+          <span>{SITE_META.NAME}</span>
         </Link>
-        <button className="menu-button" onClick={handleClick} arial-label="menu">
+        <button
+          className="menu-button"
+          onClick={handleClick}
+          arial-label="menu"
+        >
           {isOpen ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -68,7 +79,7 @@ export default function Navbar({ navItems }) {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
-              className="w-6 h-6"
+              className="h-6 w-6"
             >
               <path
                 fillRule="evenodd"
