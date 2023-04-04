@@ -170,13 +170,16 @@ body {
   -webkit-box-orient: inherit;
 }
 .game-info {
-  @apply xl:flex xl:flex-row xl:items-center xl:space-x-2;
+  @apply xl:flex xl:flex-row xl:items-center xl:space-x-1.5;
 }
 .game-rating {
   @apply my-2 grid h-10 w-10 content-center rounded-full bg-orange-500 text-center text-xl font-bold text-white;
 }
 .game-category {
   @apply inline-block rounded-md bg-lime-600 px-2 py-1 text-xs uppercase text-lime-200;
+}
+.hot-label {
+  @apply inline-block rounded-md bg-red-600 px-2 py-1 text-xs font-bold uppercase text-white;
 }
 .play-btn {
   @apply mx-auto block rounded-full bg-sky-500 px-8 py-4 text-center text-xl font-bold text-white shadow-lg shadow-sky-600/20 xl:hidden xl:w-[300px];

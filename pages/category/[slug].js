@@ -3,7 +3,7 @@ import Image from "next/image";
 import Layout from "@/components/Layout";
 
 import Link from "next/link";
-import { SITE_META } from "@/lib/constants";
+import { FEATURED_GAMES, SITE_META } from "@/lib/constants";
 
 import { getCategories, getGamesByCategorySlug } from "@/lib/api";
 import getGameIcon from "@/utils/getGameIcon";
@@ -11,12 +11,19 @@ import AdScript from "@/components/AdScript";
 
 export default function Category({ games, category, total }) {
   console.log(`games: `, games);
+  const isFeatured = (id) => FEATURED_GAMES.includes(id);
   return (
     <Layout>
       <Head>
         <title>{category.name + ` Games | ` + SITE_META.NAME}</title>
-        <meta name="description" content={`Play ${category.name} games on ${SITE_META.NAME}`} />
-        <link rel="canonical" href={`https://www.playgamesfree.xyz/category/${category.slug}`} />
+        <meta
+          name="description"
+          content={`Play ${category.name} games on ${SITE_META.NAME}`}
+        />
+        <link
+          rel="canonical"
+          href={`https://www.playgamesfree.xyz/category/${category.slug}`}
+        />
       </Head>
       <AdScript />
       <div className={`category`}>
@@ -29,14 +36,16 @@ export default function Category({ games, category, total }) {
             {games.map((i, index) => (
               <li key={i.slug} className="list-item">
                 <Link href={`/game/` + i.slug}>
-                  <Image
-                    className="image"
-                    src={getGameIcon(i.gid)}
-                    alt={i.title}
-                    width={100}
-                    height={100}
-                    loading={index <= 9 ? `eager` : `lazy`}
-                  />
+                  <div className={isFeatured(i.gid) ? `hot` : ``}>
+                    <Image
+                      className="image"
+                      src={getGameIcon(i.gid)}
+                      alt={i.title}
+                      width={100}
+                      height={100}
+                      loading={index <= 9 ? `eager` : `lazy`}
+                    />
+                  </div>
                   <div className="title">{i.title}</div>
                 </Link>
               </li>
@@ -53,7 +62,7 @@ export default function Category({ games, category, total }) {
 
 export const getStaticProps = async (ctx) => {
   console.log(`ctx >>`, ctx);
-  const data = await getGamesByCategorySlug(ctx.params.slug, 48);
+  const data = await getGamesByCategorySlug(ctx.params.slug, 60);
 
   return {
     props: {

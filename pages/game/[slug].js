@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 // import ListItem from "../../components/ListItem";
 import { fetchAPI, getCategories, getGameBySlug } from "@/lib/api";
-import { SITE_META } from "@/lib/constants";
+import { FEATURED_GAMES, SITE_META } from "@/lib/constants";
 import getGameIcon from "@/utils/getGameIcon";
 import getGameUrl from "@/utils/getGameUrl";
 import AdScript from "@/components/AdScript";
@@ -20,6 +20,8 @@ import Microformat from "@/components/Microformat";
 export default function Game({ game, relatedGames }) {
   // console.log(`game: `, JSON.stringify(game));
   // console.log(`relatedGames: `, JSON.stringify(relatedGames));
+
+  const isFeatured = (id) => FEATURED_GAMES.includes(id);
 
   const [isPlayerOpen, setIsPlayerOpen] = useState(false);
 
@@ -166,6 +168,9 @@ export default function Game({ game, relatedGames }) {
                 >
                   {game.category.name}
                 </Link>
+                {isFeatured(game.gid) ? (
+                  <span className="hot-label">Hot</span>
+                ) : null}
               </div>
             </div>
           </div>
