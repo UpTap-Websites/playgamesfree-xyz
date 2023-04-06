@@ -58,7 +58,7 @@ export default function Home({ data }) {
 }
 
 export const getStaticProps = async (ctx) => {
-  const data = await getDataForHome();
+  const data = await getDataForHome(12);
 
   return {
     props: {
