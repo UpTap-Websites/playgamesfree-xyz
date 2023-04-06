@@ -24,34 +24,37 @@ export default function Home({ data }) {
       <Microformat id="home" type="WebSite" />
       <AdScript />
       <div className={`home`}>
-        {data.map((item, index) => (
-          <section key={item.category.slug}>
-            <div className={`section-head`}>
-              <Image
-                src={Icons(item.category.name)}
-                alt=""
-                width={20}
-                height={20}
-              />
-              <h2 className={`h2`}>{item.category.name + ` Games`}</h2>
-              {/* <span className="total">{item.data.total}</span> */}
-            </div>
-            <ul className={`section-body`}>
-              {item.data.games.map((item) => (
-                <ListItem item={item} type={`banner`} key={item.slug} />
-              ))}
-            </ul>
-            {item.data.total > 6 ? (
-              <Link
-                href={`/category/` + item.category.slug}
-                className="link-more"
-                title="More"
-              >
-                More
-              </Link>
-            ) : null}
-          </section>
-        ))}
+        {data.map((item, index) => {
+          // item.data.games.sort(() => Math.random() - 0.5);
+          return (
+            <section key={item.category.slug}>
+              <div className={`section-head`}>
+                <Image
+                  src={Icons(item.category.name)}
+                  alt=""
+                  width={20}
+                  height={20}
+                />
+                <h2 className={`h2`}>{item.category.name + ` Games`}</h2>
+                {/* <span className="total">{item.data.total}</span> */}
+              </div>
+              <ul className={`section-body`}>
+                {item.data.games.map((item) => (
+                  <ListItem item={item} type={`banner`} key={item.slug} />
+                ))}
+              </ul>
+              {item.data.total > 6 ? (
+                <Link
+                  href={`/category/` + item.category.slug}
+                  className="link-more"
+                  title="More"
+                >
+                  More
+                </Link>
+              ) : null}
+            </section>
+          );
+        })}
       </div>
     </Layout>
   );

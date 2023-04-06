@@ -26,7 +26,9 @@ export default function ListItem({ item, type }) {
             height={type !== `banner` ? 100 : 81}
           />
         </div>
-        <div className="title">{item.title}</div>
+        <div className="title">
+          <b>{item.title}</b>
+        </div>
         {/* <div className="category">{item.category.name}</div> */}
         {/* <div className="rating">{item.rating}</div> */}
       </Link>

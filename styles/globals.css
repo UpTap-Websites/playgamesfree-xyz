@@ -108,13 +108,23 @@ body {
   @apply xl:scale-110  xl:shadow-black/20;
 }
 .list-item .image {
-  @apply w-full rounded-[2rem] border-4 border-amber-300;
+  @apply w-full;
 }
+.list-item a {
+  @apply relative block overflow-hidden rounded-[2rem] border-4 border-amber-300;
+}
+
 .list-item .title {
   /* -webkit-box-orient: vertical;
   display: -webkit-box;
   -webkit-line-clamp: 2; */
-  @apply mt-2 line-clamp-2 h-8 overflow-hidden text-center text-xs text-emerald-900;
+  @apply absolute -bottom-full left-1/2 w-full -translate-x-1/2 overflow-hidden bg-black/80 pb-2 text-center text-xs text-white xl:px-2  xl:py-3 xl:text-sm xl:leading-4;
+}
+.list-item a:hover .title {
+  @apply transform duration-300 xl:-bottom-0;
+}
+.list-item .title b {
+  @apply line-clamp-3;
 }
 .link-more {
   @apply mx-5 mt-4 block rounded-sm border border-amber-400 bg-amber-300 py-1 text-center text-sm uppercase text-yellow-900 shadow-sm shadow-amber-200 xl:mx-10;

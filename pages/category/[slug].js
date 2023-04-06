@@ -46,7 +46,9 @@ export default function Category({ games, category, total }) {
                       loading={index <= 9 ? `eager` : `lazy`}
                     />
                   </div>
-                  <div className="title">{i.title}</div>
+                  <div className="title">
+                    <b>{i.title}</b>
+                  </div>
                 </Link>
               </li>
             ))}
