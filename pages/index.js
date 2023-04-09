@@ -39,9 +39,11 @@ export default function Home({ data }) {
                 {/* <span className="total">{item.data.total}</span> */}
               </div>
               <ul className={`section-body`}>
-                {item.data.games.map((item) => (
-                  <ListItem item={item} type={`banner`} key={item.slug} />
-                ))}
+                {item.data.games
+                  .sort((a, b) => (a.featured < b.featured ? 1 : -1))
+                  .map((item) => (
+                    <ListItem item={item} type={`banner`} key={item.slug} />
+                  ))}
               </ul>
               {item.data.total > 6 ? (
                 <Link

@@ -1,3 +1,4 @@
+import { PER_PAGE } from "@/lib/api";
 import Layout from "@/components/Layout";
 import List from "@/components/List";
 import Head from "next/head";
@@ -213,7 +214,7 @@ export default function Game({ game, relatedGames }) {
 }
 
 export const getStaticProps = async (ctx) => {
-  const data = await getGameBySlug(ctx.params.slug, 48);
+  const data = await getGameBySlug(ctx.params.slug, PER_PAGE);
 
   return {
     props: {
@@ -226,7 +227,6 @@ export const getStaticProps = async (ctx) => {
 };
 
 export const getStaticPaths = async () => {
-  const PER_PAGE = 48;
   // 按分类取
   const categories = await getCategories();
   // console.log(`detai ..categories`, categories);
@@ -236,7 +236,7 @@ export const getStaticPaths = async () => {
     const tmp = await fetchAPI(
       `
         query ($category: String, $limit: Int ){
-          games (filter: { category: { slug: { _eq: $category } } }, limit: $limit) {
+          games (filter: { category: { slug: { _eq: $category } } }, limit: $limit, sort: "-featured") {
             slug
           }
         }
