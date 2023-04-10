@@ -139,13 +139,13 @@ body {
   @apply mx-auto grid xl:mx-8 xl:grid-cols-12 xl:gap-8;
 }
 .player {
-  @apply fixed inset-0 z-10 bg-black/90 backdrop-blur xl:static xl:mb-4 xl:block;
+  @apply fixed inset-0 z-10 bg-gray-400 backdrop-blur xl:static xl:mb-4 xl:block xl:aspect-video xl:h-auto xl:w-full xl:overflow-hidden;
 }
 .game-iframe {
-  @apply h-screen w-screen border-0 xl:aspect-video xl:h-auto xl:w-full;
+  @apply relative h-screen w-screen border-0 xl:z-10 xl:aspect-video xl:h-auto xl:w-full;
 }
 .back-btn {
-  @apply absolute left-0 top-1 z-20 overflow-hidden rounded-r-full bg-emerald-500/80 p-4 pl-2 text-xs uppercase text-white xl:hidden;
+  @apply absolute left-0 top-1 z-20 overflow-hidden rounded-r-full bg-sky-500/80 p-4 pl-2 text-xs uppercase text-white;
 }
 .detail .section-head {
   @apply mx-3 mb-2 justify-center xl:justify-start;
@@ -192,7 +192,7 @@ body {
   @apply inline-block rounded-md bg-red-600 px-2 py-1 text-xs font-bold uppercase text-white;
 }
 .play-btn {
-  @apply mx-auto block rounded-full bg-sky-500 px-8 py-4 text-center text-xl font-bold text-white shadow-lg shadow-sky-600/20 xl:hidden xl:w-[300px];
+  @apply mx-auto rounded-full bg-sky-500 px-8 py-4 text-center text-xl font-bold text-white shadow-lg shadow-sky-600/20 xl:absolute xl:left-1/2 xl:top-1/2 xl:z-30 xl:w-[300px] xl:-translate-x-1/2 xl:-translate-y-1/2;
 }
 /* .detail aside {
   @apply xl:max-w-xs;
@@ -214,4 +214,8 @@ body {
 }
 .page ul {
   @apply my-2 ml-4 list-outside list-disc;
+}
+
+.full-screen {
+  @apply overflow-hidden xl:overflow-auto;
 }

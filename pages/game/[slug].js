@@ -62,17 +62,16 @@ export default function Game({ game, relatedGames }) {
     if (isPlayerOpen) {
       _gameIframe.src = gameUrl; // 关闭后再打开时赋值
       _player.classList.remove("hidden");
-      _body.classList.add("overflow-hidden");
+      _body.classList.add("full-screen");
     } else {
       _player.classList.add("hidden");
-      _body.classList.remove("overflow-hidden");
+      _body.classList.remove("full-screen");
     }
 
     // deal with the play button
     function handleClickPlay(e) {
       e.preventDefault();
       setIsPlayerOpen(true);
-
       gtag && gtag("event", "click_CTA", { game: game.title });
     }
 
@@ -88,17 +87,19 @@ export default function Game({ game, relatedGames }) {
     }
 
     _playBtn.addEventListener("click", handleClickPlay);
-    _backBtn.addEventListener("click", handleClickBack);
+    _backBtn && _backBtn.addEventListener("click", handleClickBack);
 
     _desc.addEventListener("click", handleClickDesc);
 
     return () => {
       _playBtn.removeEventListener("click", handleClickPlay);
-      _backBtn.removeEventListener("click", handleClickBack);
+      _backBtn && _backBtn.removeEventListener("click", handleClickBack);
 
       _desc.removeEventListener("click", handleClickDesc);
     };
   }, [isPlayerOpen, game.title, gameUrl]);
+
+  const iconUrl = getGameIcon(game.gid);
 
   return (
     <Layout>
@@ -116,42 +117,62 @@ export default function Game({ game, relatedGames }) {
       <Microformat id={game.gid} item={game} type={`Game`} />
       <AdScript />
       <div className="detail">
-        <section className="mx-8 xl:order-2 xl:col-span-6 xl:mx-0 xl:flex xl:grow xl:flex-col">
-          <div className="player hidden">
-            <Draggable
-              nodeRef={draggableRef}
-              axis="y"
-              bounds="parent"
-              onStart={handleStart}
-              onDrag={handleDrag}
-              onStop={handleEnd}
+        <section className="relative mx-8 xl:order-2 xl:col-span-6 xl:mx-0 xl:flex xl:grow xl:flex-col">
+          <div className="relative mb-4 flex flex-col items-center xl:mb-0">
+            <button
+              className={`play-btn ${isPlayerOpen ? "hidden" : ""}`}
+              title={`Play ` + game.title + ` Now`}
             >
-              <div ref={draggableRef} className="back-btn">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={3}
-                  stroke="currentColor"
-                  className="h-6 w-6 text-white"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15.75 19.5L8.25 12l7.5-7.5"
-                  />
-                </svg>
-              </div>
-            </Draggable>
-            <iframe
-              className="game-iframe"
-              src={getGameUrl(game.slug)}
-            ></iframe>
+              Play Now
+            </button>
+
+            <div className={`player`}>
+              {isPlayerOpen ? (
+                <>
+                  <Draggable
+                    nodeRef={draggableRef}
+                    axis="y"
+                    bounds="parent"
+                    onStart={handleStart}
+                    onDrag={handleDrag}
+                    onStop={handleEnd}
+                  >
+                    <div ref={draggableRef} className="back-btn">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={3}
+                        stroke="currentColor"
+                        className="h-6 w-6 text-white"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M15.75 19.5L8.25 12l7.5-7.5"
+                        />
+                      </svg>
+                    </div>
+                  </Draggable>
+                  <iframe
+                    className="game-iframe"
+                    src={getGameUrl(game.slug)}
+                  ></iframe>
+                </>
+              ) : null}
+              <Image
+                className="player-bg absolute left-1/2 top-1/2 -z-0 w-full -translate-x-1/2 -translate-y-1/2 object-cover opacity-70 blur-2xl"
+                src={iconUrl}
+                alt={game.title}
+                width={200}
+                height={200}
+              />
+            </div>
           </div>
           <div className="game-meta">
             <Image
               className="image"
-              src={getGameIcon(game.gid)}
+              src={iconUrl}
               width={200}
               height={200}
               alt={game.title}
@@ -175,13 +196,7 @@ export default function Game({ game, relatedGames }) {
               </div>
             </div>
           </div>
-          <Link
-            href={getGameUrl(game.slug)}
-            className="play-btn"
-            title={`Play ` + game.title + ` Now`}
-          >
-            Play Now
-          </Link>
+
           <div className="description grow">
             <h3 className="mb-2 font-bold">Description</h3>
             <div
