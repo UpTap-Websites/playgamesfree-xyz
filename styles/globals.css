@@ -10,7 +10,7 @@ body {
 
 /* Layout */
 .wrapper {
-  @apply flex min-h-screen flex-col bg-gradient-to-b from-[#41f9bc] to-[#ffffc2] bg-fixed;
+  @apply flex min-h-screen flex-col bg-gradient-to-b from-[#34ffbb] to-[#ffffc2] bg-fixed;
 }
 
 /* Kit */
@@ -94,7 +94,7 @@ body {
   @apply grid-cols-2 xl:mx-10 xl:mb-3;
 }
 .home .section-head h2 {
-  @apply bg-gradient-to-r from-rose-500 from-30% to-amber-400 bg-clip-text text-xl font-bold text-transparent;
+  @apply bg-gradient-to-r from-rose-500 from-20% to-emerald-500 bg-clip-text text-xl font-bold text-transparent;
 }
 .home .section-body {
   @apply grid-cols-3;
@@ -115,7 +115,7 @@ body {
   @apply w-full;
 }
 .list-item a {
-  @apply relative block overflow-hidden rounded-[2rem] border-4 border-amber-300;
+  @apply relative block overflow-hidden rounded-[2rem] border-4 border-emerald-400;
 }
 
 .list-item .title {
