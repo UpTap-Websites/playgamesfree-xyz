@@ -167,7 +167,7 @@ body {
   @apply h-28 w-28 rounded-[2rem] border-4 border-amber-300 xl:mr-3 xl:h-28 xl:w-28 xl:shadow-xl xl:shadow-amber-200;
 }
 .game-info {
-  @apply mx-auto flex items-center justify-center gap-2 xl:justify-start;
+  @apply mx-auto flex items-center gap-2 xl:justify-start;
 }
 .detail .description {
   @apply order-3 my-4 grow overflow-hidden rounded-lg bg-amber-200 p-4 text-sm text-emerald-800 xl:mb-6 xl:mt-0 xl:text-base;
