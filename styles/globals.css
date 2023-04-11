@@ -10,7 +10,7 @@ body {
 
 /* Layout */
 .wrapper {
-  @apply flex min-h-screen flex-col bg-gradient-to-b from-white to-amber-50 bg-fixed;
+  @apply flex min-h-screen flex-col bg-gradient-to-b from-[#41f9bc] to-[#ffffc2] bg-fixed;
 }
 
 /* Kit */
