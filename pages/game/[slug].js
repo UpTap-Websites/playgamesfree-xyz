@@ -117,8 +117,8 @@ export default function Game({ game, relatedGames }) {
       <Microformat id={game.gid} item={game} type={`Game`} />
       <AdScript />
       <div className="detail">
-        <section className="relative mx-8 xl:order-2 xl:col-span-6 xl:mx-0 xl:flex xl:grow xl:flex-col">
-          <div className="relative mb-4 flex flex-col items-center xl:mb-0">
+        <section className="relative mx-8 flex flex-col xl:order-2 xl:col-span-6 xl:mx-0 xl:flex xl:grow xl:flex-col">
+          <div className="relative order-2 mb-4 flex flex-col items-center xl:mb-0">
             <button
               className={`play-btn ${isPlayerOpen ? "hidden" : ""}`}
               title={`Play ` + game.title + ` Now`}
@@ -197,7 +197,7 @@ export default function Game({ game, relatedGames }) {
             </div>
           </div>
 
-          <div className="description grow">
+          <div className="description">
             <h3 className="mb-2 font-bold">Description</h3>
             <div
               className="content"

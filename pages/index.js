@@ -39,9 +39,13 @@ export default function Home({ data }) {
                 {/* <span className="total">{item.data.total}</span> */}
               </div>
               <ul className={`section-body`}>
-                {item.data.games.map((item) => (
-                  <ListItem item={item} type={`banner`} key={item.slug} />
-                ))}
+                {item.data.games.map((item, index) =>
+                  index > 0 ? (
+                    <ListItem item={item} key={item.slug} />
+                  ) : (
+                    <ListItem item={item} type={`banner`} key={item.slug} />
+                  )
+                )}
               </ul>
               {item.data.total > 6 ? (
                 <Link
@@ -61,7 +65,7 @@ export default function Home({ data }) {
 }
 
 export const getStaticProps = async (ctx) => {
-  const data = await getDataForHome(12);
+  const data = await getDataForHome(12 + 1);
 
   return {
     props: {
