@@ -215,13 +215,19 @@ export default function Game({ game, relatedGames }) {
           <div className="mb-6">
             <AdSense />
           </div>
-          <List items={relatedGames.slice(12, 30)} type="banner" />
+          <List
+            items={relatedGames.slice(12, (PER_PAGE - 12) / 2 + 12)}
+            type="banner"
+          />
         </aside>
         <aside className="xl:order-3 xl:col-span-3">
           <div className="mb-6">
             <AdSense />
           </div>
-          <List items={relatedGames.slice(30)} type="banner" />
+          <List
+            items={relatedGames.slice((PER_PAGE - 12) / 2 + 12)}
+            type="banner"
+          />
         </aside>
       </div>
     </Layout>
